@@ -1,0 +1,25 @@
+/* style.css for jobimport */
+
+/* testing some stuff out Poppins & Raleway*/
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Poppins', serif;
+}
+
+p, div {
+	font-family: 'Raleway', Helvetica, sans-serif;
+}
+
+p {
+	padding: 10px 10px 20px 10px;
+}
+
+body {
+	padding-left: 15px;
+	background-color: #A7C0D6;
+	/*complementary color for this one: #D6BDA7*/
+}
+
+.page-header {
+	margin-top: 0;
+	padding: 20px 20px 20px 40px;
+}

@@ -1,0 +1,23 @@
+<!-- testing for index.html -->
+<!DOCTYPE html>
+{%  load static %}
+<html>
+<head>
+	<title>Home Page</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static '/jobimport/style.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Poppins|Raleway" rel="stylesheet">
+</head>
+
+<body>
+	<div class="page-header">
+		<h1>Testing! Welcome to the index page!</h1>
+	</div>
+	
+	<div class="container">
+		<p>
+			<a href="{%  url 'JobImport:index' %}">Job Details</a>
+		</p>
+	</div>
+</body>
+</html>
