@@ -10,16 +10,55 @@ p, div {
 }
 
 p {
-	padding: 10px 10px 20px 10px;
+	padding: 5em, 5em, 5em, 5em;
 }
 
 body {
-	padding-left: 15px;
+	padding-left: 5em;
 	background-color: #A7C0D6;
 	/*complementary color for this one: #D6BDA7*/
 }
 
-.page-header {
-	margin-top: 0;
-	padding: 20px 20px 20px 40px;
+.header{
+	/*
+	background-image: url( '../images/imagename.jpg' )
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	*/
+	background-color: #D6BDA7;
 }
+
+.overlay{
+	position: absolute;
+	min-height: 100%;
+	min-width: 100%;
+	left: 0;
+	top: 0;
+	background: rgba( 244, 244, 244, 0.79 );
+}
+
+.description{
+	position: absolute;
+	top: 30%;
+	margin: auto;
+	padding: 2em;
+}
+
+.description h1{
+	color: #D6BDA7;
+}
+
+.description p{
+	color: #666;
+	font-size: 20px;
+	width: 50%;
+	line-height: 1.5;
+}
+
+.description button{
+	border: 1px solid #D6BDA7;
+	background: #D6BDA7;
+	color: #D6BDA7;
+}
+
