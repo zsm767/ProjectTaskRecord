@@ -7,7 +7,7 @@ from django.utils import timezone
 class Employee( models.Model ):
 	#class vars, etc.; relates directly to columns
 	employee_name = models.CharField(max_length = 200)
-	employee_id = models.CharField(max_length = 12)
+	employee_id = models.CharField(max_length = 8)
 	#unique id?
 	
 	#default __str__ func for printing
@@ -18,6 +18,7 @@ class Employee( models.Model ):
 class TaskCodes( models.Model ):
 	code_id = models.PositiveSmallIntegerField(default = 0)
 	code_desc = models.CharField(max_length = 50)
+	phase = models.CharField(default = "00", max_length = 2)
 	
 	def __str__(self):
 		return self.code_desc
