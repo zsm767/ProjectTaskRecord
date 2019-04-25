@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from .models import *
 from .forms import UploadFileForm
+from django.shortcuts import redirect
 
 # Create your views here.
 #def pagename( request, PK )
@@ -28,7 +29,7 @@ class IndexView( generic.ListView ):
 	
 	def get_queryset(self):
 		#return the last X published jobs?
-		return Jobs.objects.order_by( '-pub_date' )[:5]
+		return Jobs.objects.order_by( '-last_updated' )[:5]
 	
 	
 

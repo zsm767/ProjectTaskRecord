@@ -45,7 +45,7 @@ body {
 
 .description{
 	position: absolute;
-	top: 10%;
+	top: 5%;
 	margin: auto;
 	left: 5%
 }
@@ -80,5 +80,5 @@ body {
 	top: 35%;
 	margin: auto;
 	position: absolute;
-	padding: .5em;
+	left: 5%
 }

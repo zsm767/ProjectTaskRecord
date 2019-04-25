@@ -26,7 +26,7 @@ class TaskCodes( models.Model ):
 
 
 class Jobs( models.Model ):
-	job_id = models.PositiveSmallIntegerField(default = 0)
+	job_id = models.PositiveSmallIntegerField(default = 1)
 	job_name = models.CharField(max_length = 50)
 	start_date = models.DateTimeField()
 	last_updated = models.DateTimeField( 'Date Updated' )

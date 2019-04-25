@@ -29,10 +29,11 @@
 				<p>Multiple buttons to link to the different pages. It won't work for now, due to data missing in the DB.</p>
 				<p>Using a button template to remove functionality, but mess with the layout.</p>
 				<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Link Back Here</a>
-				<a href="#" class="btn btn-outline-secondary btn-tiny">Job Details</a>
-				<a href="#" class="btn btn-outline-secondary btn-tiny">Employee Info</a>
-				<a href="#" class="btn btn-outline-secondary btn-tiny">Task Info</a>
+				<a href="{% url 'JobImport:job_details' 1 %}" class="btn btn-outline-secondary btn-tiny">Job Details</a>
+				<a href="{% url 'JobImport:employee_info' 1 %}" class="btn btn-outline-secondary btn-tiny">Employee Info</a>
+				<a href="{% url 'JobImport:task_info' 1 %}" class="btn btn-outline-secondary btn-tiny">Task Info</a>
 		</div>
+		
 	</body>
 </html>
 {% endblock %}
