@@ -5,5 +5,11 @@
 
 <h1>Testing! Welcome to the Task Information page!</h1>
 <a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
-
+	{% if latest_job_list %}
+	<p>
+		{% for job in latest_job_list %}
+			<li><a href="{% url 'JobImport:job_details' job.job_id %}">{{ job.job_name }}</a></li>
+		{% endfor %}
+	</p>
+	{% endif %}
 {% endblock %}

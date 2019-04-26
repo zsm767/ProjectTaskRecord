@@ -7,14 +7,15 @@
 	<p>Should list the linkable details for each job currently stored in the database</p>
 	<div class="bulk">
 		<p>Testing</p>
-		{% if latest_job_list %}
+		{% if latest_job_details %}
 		<ul>
-			{% for job in latest_job_list %}
-				<li><a href="{% url 'JobImport:job_details' job.job_id %}">{{ job.job_name }}</a></li>
+			{% for job in latest_job_details %}
+				<p>{{ job.job_name }}</p>
 			{% endfor %}
 		</ul>
 		{% endif %}
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 	</div>
+	
 </body>
 {% endblock %}

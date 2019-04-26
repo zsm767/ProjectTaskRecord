@@ -36,6 +36,10 @@ class IndexView( generic.ListView ):
 class JobDetailsView( generic.DetailView ):
 	model = Jobs
 	template_name = 'jobimport/jobdetails.html'
+	context = 'latest_job_details'
+	
+	def get_queryset(self):
+		return Jobs.objects.order_by( '-start_date' )
 	
 	
 class EmployeeInfoView( generic.DetailView ):
