@@ -10,4 +10,5 @@ urlpatterns = [
 	path( '<int:pk>/jobdetails', views.JobDetailsView.as_view() ,name = 'job_details' ),
 	path( '<int:pk>/employee_info', views.EmployeeInfoView.as_view(), name = 'employee_info' ),
 	path( '<int:pk>/task_info', views.TaskInfoView.as_view(), name = 'task_info' ),
+	#path( '/file_upload', views.file_upload(''), name = 'file_upload' ),
 ]

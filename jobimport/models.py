@@ -4,6 +4,13 @@ from django.db import models
 from django.utils import timezone
 #from jobimport.models import [ModelNames] || import jobimport.models
 # Create your models here.
+class Document( models.Model ):
+	upload_by = models.ForeignKey( 'auth.User', related_name = 'uploaded_documents', on_delete=models.CASCADE )
+	timekey = models.DateTimeField( auto_now_add = True )
+	document = models.Field(  )
+	
+
+
 class Employee( models.Model ):
 	#class vars, etc.; relates directly to columns
 	employee_name = models.CharField(max_length = 200)
@@ -30,6 +37,7 @@ class Jobs( models.Model ):
 	job_name = models.CharField(max_length = 50)
 	start_date = models.DateTimeField()
 	last_updated = models.DateTimeField( 'Date Updated' )
+	document = models.ForeignKey( Document, on_delete=models.CASCADE )
 	
 	def __str__(self):
 		return self.job_name

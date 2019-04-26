@@ -1,26 +1,24 @@
+import os
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.views import generic
 from .models import *
 from .forms import UploadFileForm
 from django.shortcuts import redirect
+from django.conf import settings 
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 #def pagename( request, PK )
 
 #index probably for a base page or something, primarily for testing things out
 #think: what are the primary pages for this site going to have?
-def upload_file( request ):
-	if( request.method == 'POST' ):
-		form = UploadFileForm( request.POST, request.FILES )
-		if( form.is_valid() ):
-			instance = ModelWithFileField( file_field=request.FILES['file'] )
-			instance.save()
-			return HttpResponseRedirect( '/success/url' ) #need to change this later
-	else:
-		form = UploadFileForm()
-	return render( request, 'upload.html', {'form': form} ) #also need to change this 
+@require_POST
+def file_upload( request ):
+	save_path = os.path.join( settings.MEDIA_ROOT, 'uploads', request.FILES['file'] )
+	path = default.storage.save( save_path, request.FILES['file'] )
+	return default_storage.path( path )
 	
 
 class IndexView( generic.ListView ):
