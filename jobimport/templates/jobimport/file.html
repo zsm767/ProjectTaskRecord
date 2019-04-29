@@ -4,7 +4,6 @@
 {% load static %}
 
 {% block content %}
-
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -18,9 +17,12 @@
 			{{ form.as_p }}
 			<input type="submit" value="Upload"/>
 		</form>
-		
 		<br><br>
-		<a href="{{ MEDIA_URL }}{{ filepath }}" target="_blank">test - link not working at the moment</a>
+		{% if filename %}
+			<p>
+				{{ filename }}
+			</p>
+		{% endif %}
 		<br><br>
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 		</p>

@@ -15,7 +15,7 @@ from django.views.decorators.http import require_POST
 #index probably for a base page or something, primarily for testing things out
 #think: what are the primary pages for this site going to have?
 def showfile( request ):
-	lastfile = File
+	lastfile = File.objects.last()
 	filepath = lastfile.filepath
 	filename = lastfile.name
 	
@@ -25,7 +25,7 @@ def showfile( request ):
 		
 	context = { 'filepath': filepath, 
 				'form': form,
-				'filename': filename
+				'filename': filename,
 			  }
 	return render( request, 'jobimport/file.html', context)
 
