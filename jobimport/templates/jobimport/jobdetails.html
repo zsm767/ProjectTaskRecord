@@ -3,20 +3,22 @@
 {% extends "base.html" %}
 {% block content %} 
 <body>
+
 	<h1>Testing! Welcome to the Job Details page!</h1>
 	<p>Should list the linkable details for each job currently stored in the database</p>
 	<div class="bulk">
 		<p>Testing</p>
-		{% if latest_job_details %}
-		<ul>
-			{% for job in latest_job_details %}
-				<p>{{ job.job_name }}</p>
-			{% endfor %}
-		</ul>
+		
+		{% if job_list %}
+			<ul>
+				{% for job in job_list.all %}
+					<li>{{ job.job_name }}</li>
+				{% endfor %}
+			</ul>
 		{% endif %}
+		
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 	</div>
-	
 	
 </body>
 {% endblock %}
