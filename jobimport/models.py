@@ -4,10 +4,12 @@ from django.db import models
 from django.utils import timezone
 #from jobimport.models import [ModelNames] || import jobimport.models
 # Create your models here.
-class Document( models.Model ):
-	upload_by = models.ForeignKey( 'auth.User', related_name = 'uploaded_documents', on_delete=models.CASCADE )
-	timekey = models.DateTimeField( auto_now_add = True )
-	document = models.Field(  )
+class File( models.Model ):
+	name = models.CharField(max_length = 30)
+	filepath = models.FileField(upload_to='files/', null=True, verbose_name="")
+	
+	def __str__(self):
+		return self.name + ": " + str(self.filepath)
 	
 
 
@@ -37,7 +39,7 @@ class Jobs( models.Model ):
 	job_name = models.CharField(max_length = 50)
 	start_date = models.DateTimeField()
 	last_updated = models.DateTimeField( 'Date Updated' )
-	document = models.ForeignKey( Document, on_delete=models.CASCADE )
+	#document = models.ForeignKey( Document, on_delete=models.CASCADE )
 	
 	def __str__(self):
 		return self.job_name

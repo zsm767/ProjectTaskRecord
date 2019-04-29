@@ -1,6 +1,9 @@
 #JobImport/urls.py
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 app_name = 'JobImport'
 urlpatterns = [
@@ -10,5 +13,6 @@ urlpatterns = [
 	path( '<int:pk>/jobdetails', views.JobDetailsView.as_view() ,name = 'job_details' ),
 	path( '<int:pk>/employee_info', views.EmployeeInfoView.as_view(), name = 'employee_info' ),
 	path( '<int:pk>/task_info', views.TaskInfoView.as_view(), name = 'task_info' ),
-	#path( '/file_upload', views.file_upload(''), name = 'file_upload' ),
-]
+	path( 'file_upload', views.showfile, name = 'file' ),
+	
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
