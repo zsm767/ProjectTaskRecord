@@ -6,17 +6,19 @@
 
 	<h1>Testing! Welcome to the Job Details page!</h1>
 	<p>Should list the linkable details for each job currently stored in the database</p>
-	<div class="bulk">
-		<p>Testing</p>
-		
+	<div>
+	
 		{% if job_list %}
 			<ul>
-				{% for job in job_list.all %}
-					<li>{{ job.job_name }}</li>
-				{% endfor %}
+				<li>Current Job Name: "{{ job_list.job_name }}"</li>
+				<li>Current Job ID: "{{ job_list.job_id}}"</li>
+				<li>Current Start Date: {{ job_list.start_date }}</li>
+				<li>Last Updated: {{ job_list.last_updated }}</li>
+				<!-- add back in the "for" statement later after more data is added -->
 			</ul>
 		{% endif %}
-		
+	</div>
+	<div class="bulk">
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 	</div>
 	
