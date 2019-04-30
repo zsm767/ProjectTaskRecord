@@ -4,12 +4,18 @@
 {% block content %}
 
 <h1>Testing! Welcome to the Task Information page!</h1>
-<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
-	{% if latest_job_list %}
-	<p>
-		{% for job in latest_job_list %}
-			<li><a href="{% url 'JobImport:job_details' job.job_id %}">{{ job.job_name }}</a></li>
-		{% endfor %}
-	</p>
-	{% endif %}
+<body>
+	<div>
+		{% if task %}
+		<p>
+			{% for t in task %}
+				<li><a href="{% url 'JobImport:job_details' 1 %}">{{ t.code_desc }}</a></li>
+			{% endfor %}
+		</p>
+		{% endif %}
+	</div>
+	<div class="bulk">
+		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
+	</div>
+</body>
 {% endblock %}

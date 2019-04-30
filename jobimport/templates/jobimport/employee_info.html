@@ -4,7 +4,22 @@
 {% block content %}
 
 <h1>Testing! Welcome to the Employee Information page!</h1>
-<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
-<p>Hello!</p>
+<body>
+	<div>
+		<p>Displaying Employee Information on the Current Job:</p>
+		{% if employee %}
+			<ul>
+				{% for emp in employee %}
+					<li><b>Employee Name:</b> {{ emp.employee_name }}</li>
+					<li><b>Employee ID:</b> {{ emp.employee_id }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+	
+	<div class="bulk">
+		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
+	</div>
 
+</body>
 {% endblock %}

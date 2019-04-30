@@ -46,8 +46,9 @@ class IndexView( generic.ListView ):
 		return Jobs.objects.order_by( '-last_updated' )[:5]
 	
 	
-
-class JobDetailsView( generic.DetailView ):
+# look into the difference between DetailView and ListView. Using ListView doesn't cause iteration errors 
+# for reference, look in the difference between code on the employee_info.html and the jobdetails.html files.
+class JobDetailsView( generic.DetailView ): 
 	model = Jobs
 	template_name = 'jobimport/jobdetails.html'
 	context_object_name = 'job_list'
@@ -56,11 +57,13 @@ class JobDetailsView( generic.DetailView ):
 		return Jobs.objects.order_by( '-job_name' )
 	
 	
-class EmployeeInfoView( generic.DetailView ):
+class EmployeeInfoView( generic.ListView ):
 	model = Employee
 	template_name = 'jobimport/employee_info.html'
+	context_object_name = 'employee'
 	
 	
-class TaskInfoView( generic.DetailView ):
+class TaskInfoView( generic.ListView ):
 	model = TaskCodes 
 	template_name = 'jobimport/task_info.html'
+	context_object_name = 'task'
