@@ -8,6 +8,9 @@ from .forms import FileForm
 from django.shortcuts import redirect
 from django.conf import settings 
 from django.views.decorators.http import require_POST
+from tablib import Dataset
+from .resource import *
+
 
 # Create your views here.
 #def pagename( request, PK )
@@ -15,6 +18,7 @@ from django.views.decorators.http import require_POST
 #index probably for a base page or something, primarily for testing things out
 #think: what are the primary pages for this site going to have?
 def showfile( request ):
+	# note: will need to change some of the names around, due to this only working with one upload model/type
 	lastfile = File.objects.last()
 	filepath = lastfile.filepath
 	filename = lastfile.name
@@ -27,8 +31,22 @@ def showfile( request ):
 				'form': form,
 				'filename': filename,
 			  }
+			  
+	if request.method == 'POST':
+		employee_resource = EmployeeResource()
+		dataset = Dataset()
+		new_employees = request.FILES['fields']
+		
+		imported_data = dataset.load( new_employees.read() )
+		# testing the imported data before actually uploading it
+		result = employee_resource.import_data( dataset, dry_run=True )
+		
+		if not result.has_errors():
+			employee_resource.import_data( dataset, dry_run=False )
+			
+	
 	return render( request, 'jobimport/file.html', context)
-
+	
 
 @require_POST
 def file_upload( request ):
