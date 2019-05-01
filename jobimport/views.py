@@ -35,7 +35,7 @@ def showfile( request ):
 	if request.method == 'POST':
 		employee_resource = EmployeeResource()
 		dataset = Dataset()
-		new_employees = request.FILES['test']
+		new_employees = request.FILES['filename']
 		
 		imported_data = dataset.load( new_employees.read() )
 		# testing the imported data before actually uploading it
@@ -85,3 +85,7 @@ class TaskInfoView( generic.ListView ):
 	model = TaskCodes 
 	template_name = 'jobimport/task_info.html'
 	context_object_name = 'task'
+
+
+class SuccessView( generic.ListView ):
+	template_name = 'jobimport/success.html'

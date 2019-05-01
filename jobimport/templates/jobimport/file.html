@@ -14,7 +14,8 @@
 		<h1>File Uploader</h1>
 		<form enctype="multipart/form-data" method="POST" action="">
 			{% csrf_token %}
-			<input type="file" name="test">
+			<input type="file" name="filename">
+			<br><br>
 			<button type="submit">Upload</button>
 		</form>
 		<br><br>
