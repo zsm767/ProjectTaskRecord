@@ -35,7 +35,7 @@ def showfile( request ):
 	if request.method == 'POST':
 		employee_resource = EmployeeResource()
 		dataset = Dataset()
-		new_employees = request.FILES['fields']
+		new_employees = request.FILES['test']
 		
 		imported_data = dataset.load( new_employees.read() )
 		# testing the imported data before actually uploading it
