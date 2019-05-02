@@ -31,11 +31,11 @@ def showfile( request ):
 				'form': form,
 				'filename': filename,
 			  }
-			  
+	
 	if request.method == 'POST':
 		employee_resource = EmployeeResource()
 		dataset = Dataset()
-		new_employees = request.FILES['filename']
+		new_employees = request.FILES['myfile']
 		
 		imported_data = dataset.load( new_employees.read() )
 		# testing the imported data before actually uploading it
@@ -43,9 +43,9 @@ def showfile( request ):
 		
 		if not result.has_errors():
 			employee_resource.import_data( dataset, dry_run=False )
-			
-	
+
 	return render( request, 'jobimport/file.html', context)
+
 	
 
 @require_POST

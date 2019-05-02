@@ -14,15 +14,17 @@
 		<h1>File Uploader</h1>
 		<form enctype="multipart/form-data" method="POST" action="">
 			{% csrf_token %}
-			<input type="file" name="filename">
+			<input type="file" name="myfile">
 			<br><br>
 			<button type="submit">Upload</button>
 		</form>
 		<br><br>
 		{% if filename %}
-			<p>
-				{{ filename }}
-			</p>
+			<ul>
+				{% for fi in filepath %}
+					<li>{{ fi }}</li>
+				{% endfor %}
+			</ul>
 		{% endif %}
 		<br><br>
 		<div class="bulk">
