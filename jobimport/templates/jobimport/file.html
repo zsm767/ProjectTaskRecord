@@ -20,11 +20,7 @@
 		</form>
 		<br><br>
 		{% if filename %}
-			<ul>
-				{% for fi in filename %}
-					<li>{{ fi }}</li>
-				{% endfor %}
-			</ul>
+			<p><b>Last Uploaded File:</b> {{ filename }}</p>
 		{% endif %}
 		<br><br>
 		<div class="bulk">

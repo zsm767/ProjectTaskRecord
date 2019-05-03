@@ -43,8 +43,9 @@ def showfile( request ):
 		
 		if not result.has_errors():
 			employee_resource.import_data( dataset, dry_run=False )
+			return render( request, 'jobimport/success.html' )
 
-	return render( request, 'jobimport/file.html', context)
+	return render( request, 'jobimport/file.html', context )
 
 	
 
