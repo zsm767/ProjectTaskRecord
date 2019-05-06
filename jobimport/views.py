@@ -34,27 +34,29 @@ def showfile( request ):
 			  }
 	
 	if request.method == 'POST':
-		dataset = tablib.Dataset()
+		dataset = tablib.Dataset('')
 		new_file = request.FILES['myfile']
 		# checking for the file name, to create the appropriate resource object
 		if 'employee' in new_file.name:
+			dataset.headers = ('Employee', 'Name')
 			employee_resource = EmployeeResource()
 			
 			imported_data = dataset.load( new_file.read() )
 			# testing the imported data before actually uploading it
-			result = employee_resource.import_data( dataset, dry_run=True )
-			
+			result = employee_resource.import_data( dataset, dry_run=True, raise_errors=True )
+			context.update( {'result': result.has_errors()} )
 			if not result.has_errors():
 				employee_resource.import_data( dataset, dry_run=False )
 				return render( request, 'jobimport/success.html' )
 				
 		if 'codes' in new_file.name:
+			dataset.headers = ('Task Code', 'Task Description')
 			code_resource = CodeResource()
 			
 			imported_data = dataset.load( new_file.read() )
 			# testing the imported data before actually uploading it
-			result = code_resource.import_data( dataset, dry_run=True )
-			
+			result = code_resource.import_data( dataset, dry_run=True, raise_errors=True )
+			context.update( {'result': result.has_errors()} )
 			if not result.has_errors():
 				code_resource.import_data( dataset, dry_run=False )
 				return render( request, 'jobimport/success.html' )
