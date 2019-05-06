@@ -1,4 +1,5 @@
 import os
+import tablib
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
@@ -33,17 +34,30 @@ def showfile( request ):
 			  }
 	
 	if request.method == 'POST':
-		employee_resource = EmployeeResource()
-		dataset = Dataset()
-		new_employees = request.FILES['myfile']
-		
-		imported_data = dataset.load( new_employees.read() )
-		# testing the imported data before actually uploading it
-		result = employee_resource.import_data( dataset, dry_run=True )
-		
-		if not result.has_errors():
-			employee_resource.import_data( dataset, dry_run=False )
-			return render( request, 'jobimport/success.html' )
+		dataset = tablib.Dataset()
+		new_file = request.FILES['myfile']
+		# checking for the file name, to create the appropriate resource object
+		if 'employee' in new_file.name:
+			employee_resource = EmployeeResource()
+			
+			imported_data = dataset.load( new_file.read() )
+			# testing the imported data before actually uploading it
+			result = employee_resource.import_data( dataset, dry_run=True )
+			
+			if not result.has_errors():
+				employee_resource.import_data( dataset, dry_run=False )
+				return render( request, 'jobimport/success.html' )
+				
+		if 'codes' in new_file.name:
+			code_resource = CodeResource()
+			
+			imported_data = dataset.load( new_file.read() )
+			# testing the imported data before actually uploading it
+			result = code_resource.import_data( dataset, dry_run=True )
+			
+			if not result.has_errors():
+				code_resource.import_data( dataset, dry_run=False )
+				return render( request, 'jobimport/success.html' )
 
 	return render( request, 'jobimport/file.html', context )
 
