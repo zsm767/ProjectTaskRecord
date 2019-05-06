@@ -32,13 +32,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 	'jobimport.apps.JobimportConfig',
-	'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'import_export',
 ]
 
 MIDDLEWARE = [
