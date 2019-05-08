@@ -9,15 +9,19 @@ class EmployeeResource( resources.ModelResource ):
 		model = Employee
 		skip_unchanged = True		# sets it so that if no changes are detected on uploads, it skips over
 		report_skipped = False		# controls whether skipped records appear in the import "Result" object
+		import_id_fields = ('employee_id',)
+		fields = ( 'Employee', 'Name', )
 		
 class JobResource( resources.ModelResource ):
 	class Meta:
 		model = Jobs
 		skip_unchanged = True
-		report_skipped = True
+		report_skipped = True 
 
 class CodeResource( resources.ModelResource ):
 	class Meta:
 		model = TaskCodes
 		skip_unchanged = True
-		report_skipped = True
+		report_skipped = True 
+		import_id_fields = ('code_id',)
+		fields = ( 'code_id', 'Task Description', )
