@@ -22,6 +22,6 @@ class CodeResource( resources.ModelResource ):
 	class Meta:
 		model = TaskCodes
 		skip_unchanged = True
-		report_skipped = True 
-		import_id_fields = ('Task Code',)
-		fields = ( 'Task Code', 'Task Description', )
+		report_skipped = False 
+		import_id_fields = ('code_id',)
+		fields = ( 'code_id', 'code_desc', )
