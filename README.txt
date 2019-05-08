@@ -16,3 +16,16 @@ So far:
 	-Look into file-reading for this, just for init information
 	-Where's the code for this going to live? 
 		+Possible location -> /.../ProjectTaskRecorder/ref or something like that
+
+2019-05-8
+Update:
+
++File upload is working now; just note:
+	-Will need to change columns in the following files:
+		+Employee -> employee_id
+		+Name -> employee_name
+		+Task Code -> code_id
+		+Task Description -> code_description
+	-Creating "filename_test.xslx" versions with these updates, might make a template file
+
++Next: clean up the pages, move things around for a better presentation.
