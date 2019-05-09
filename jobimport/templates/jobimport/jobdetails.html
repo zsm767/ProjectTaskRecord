@@ -7,7 +7,14 @@
 	<h1>Testing! Welcome to the Job Details page!</h1>
 	<p>Should list the linkable details for each job currently stored in the database</p>
 	<div>
-	
+		<form enctype="multipart/form-data" method="POST" action="">
+			{% csrf_token %}
+			<label for="t_field">Enter Job name: </label>
+			<input id="t_field" type="text" name="textfield", value="Default filled-in value">
+			<br><br>
+			<button type="submit">Update</button>
+		</form>
+		<br>
 		{% if job_list %}
 			<ul>
 				<li>Current Job Name: "{{ job_list.job_name }}"</li>

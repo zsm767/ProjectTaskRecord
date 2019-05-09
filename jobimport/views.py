@@ -45,6 +45,7 @@ def showfile( request ):
 			# testing the imported data before actually uploading it
 			result = employee_resource.import_data( dataset, dry_run=True, raise_errors=True )
 			context.update( {'result': result.has_errors()} )
+			
 			if not result.has_errors():
 				employee_resource.import_data( dataset, dry_run=False )
 				return render( request, 'jobimport/success.html' )
@@ -57,6 +58,7 @@ def showfile( request ):
 			# testing the imported data before actually uploading it
 			result = code_resource.import_data( dataset, dry_run=True, raise_errors=True )
 			context.update( {'result': result.has_errors()} )
+			
 			if not result.has_errors():
 				code_resource.import_data( dataset, dry_run=False )
 				return render( request, 'jobimport/success.html' )
@@ -96,6 +98,7 @@ class EmployeeInfoView( generic.ListView ):
 	model = Employee
 	template_name = 'jobimport/employee_info.html'
 	context_object_name = 'employee'
+	
 	
 	
 class TaskInfoView( generic.ListView ):

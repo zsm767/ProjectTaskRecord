@@ -9,7 +9,7 @@
 		{% if task %}
 		<p>
 			{% for t in task %}
-				<li><a href="{% url 'JobImport:job_details' 1 %}">{{ t.code_desc }}</a></li>
+				<li>{{ t.code_id }} {{ t.code_desc }}</a></li>
 			{% endfor %}
 		</p>
 		{% endif %}
