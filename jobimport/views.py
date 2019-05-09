@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.views import generic
 from .models import *
-from .forms import FileForm
+from .forms import *
 from django.shortcuts import redirect
 from django.conf import settings 
 from django.views.decorators.http import require_POST
@@ -92,6 +92,15 @@ class JobDetailsView( generic.DetailView ):
 	
 	def get_queryset(self):
 		return Jobs.objects.order_by( '-job_name' )
+	
+	# testing some stuff out
+	def post( self, request, pk ):
+		# view logic in here
+		if self.request.method == 'POST':
+			form = JobForm( request.POST or None )
+			if form.is_valid():
+				form.save()
+			return render( request, 'jobimport/success.html' )
 	
 	
 class EmployeeInfoView( generic.ListView ):
