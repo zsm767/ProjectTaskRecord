@@ -94,13 +94,20 @@ class JobDetailsView( generic.DetailView ):
 		return Jobs.objects.order_by( '-job_name' )
 	
 	# testing some stuff out
+	"""
+	def get( self, request, pk ):
+		if self.request.method == 'GET':
+			form = JobForm( request.POST or None )
+			return render( request, self.template_name )
+	"""
 	def post( self, request, pk ):
 		# view logic in here
 		if self.request.method == 'POST':
 			form = JobForm( request.POST or None )
 			if form.is_valid():
+				# more to do in here in order to get the model updated as necessary
 				form.save()
-			return render( request, 'jobimport/success.html' )
+			return render( request, 'jobimport/success.html', {'form': form} )
 	
 	
 class EmployeeInfoView( generic.ListView ):
