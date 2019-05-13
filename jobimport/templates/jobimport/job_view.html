@@ -1,0 +1,30 @@
+<!-- job_view.html, for viewing info about the jobs in the queryset/DB -->
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %} 
+<body>
+
+	<h1>Testing! Welcome to the Job Details page!</h1>
+	<p>Should list the details for each job currently stored in the database</p>
+	<div>
+		{% if job_list %}
+			<ul>
+				<li>Current Job Name: "{{ job_list.job_name }}"</li>
+				<li>Current Job ID: "{{ job_list.job_id}}"</li>
+				<li>Current Start Date: {{ job_list.start_date }}</li>
+				<li>Last Updated: {{ job_list.last_updated }}</li>
+				add back in the "for" statement later after more data is added 
+			</ul>
+		{% endif %}
+
+	</div>
+	<div class="bulk">
+		<br><br><br><br>
+		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
+		<a href="{% url 'JobImport:job_details' 1 %}" class="btn btn-outline-secondary btn-tiny">Create New Job</a>
+		<a href="{% url 'JobImport:job_update' 1 %}" class="btn btn-outline-secondary btn-tiny">Update Existing Job</a>
+		<a href="{% url 'JobImport:job_delete' 1 %}" class="btn btn-outline-secondary btn-tiny">Delete Existing Job</a>
+	</div>
+	
+</body>
+{% endblock %}

@@ -92,13 +92,31 @@ class JobDetailsView( generic.CreateView ):
 	form_class = JobForm
 	success_url = reverse_lazy( 'JobImport:success' )
 	
+# Job-related views 
+class JobView( generic.ListView ): 
+	model = Jobs
+	template_name = 'jobimport/job_view.html'
+	context_object_name = 'job_list'
+	
 	def get_queryset(self):
 		return Jobs.objects.order_by( '-job_name' )
 	
-	""" to-do: add in code for processing the data from the form?
-		something like this:
-	def 
-	"""
+
+class JobUpdateView( generic.UpdateView ): 
+	model = Jobs
+	template_name = 'jobimport/job_update.html'
+	context_object_name = 'job_list'
+	form_class = JobForm
+	success_url = reverse_lazy( 'JobImport:success' )
+
+
+class JobDeleteView( generic.DeleteView ): 
+	model = Jobs
+	template_name = 'jobimport/job_delete.html'
+	context_object_name = 'job_list'
+	form_class = JobForm
+	success_url = reverse_lazy( 'JobImport:success' )
+# END: Job-related views 
 	
 class EmployeeInfoView( generic.ListView ):
 	model = Employee
@@ -120,3 +138,7 @@ class TaskInfoView( generic.ListView ):
 
 class SuccessView( generic.ListView ):
 	template_name = 'jobimport/success.html'
+	
+	def get_queryset(self):
+		return 
+	
