@@ -9,27 +9,27 @@
 	<div>
 		<form enctype="multipart/form-data" method="POST" action="">
 			{% csrf_token %}
-			{{ form }}
-			<!--
-			<label for="t_field">Enter Job name: </label>
-			<input id="t_field" type="text" name="textfield", value="Default filled-in value">
-			-->
+			{{ form.as_p }}
 			<br><br>
 			<button type="submit">Update</button>
 			
 		</form>
 		<br>
+		<!--
 		{% if job_list %}
 			<ul>
 				<li>Current Job Name: "{{ job_list.job_name }}"</li>
 				<li>Current Job ID: "{{ job_list.job_id}}"</li>
 				<li>Current Start Date: {{ job_list.start_date }}</li>
 				<li>Last Updated: {{ job_list.last_updated }}</li>
-				<!-- add back in the "for" statement later after more data is added -->
+				add back in the "for" statement later after more data is added 
 			</ul>
 		{% endif %}
+		currently not working, due to change from DetailView to FormView
+		-->
 	</div>
 	<div class="bulk">
+		<br><br><br>
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 	</div>
 	
