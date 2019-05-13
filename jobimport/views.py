@@ -2,7 +2,7 @@ import os
 import tablib
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from .models import *
 from .forms import *
@@ -85,28 +85,37 @@ class IndexView( generic.ListView ):
 	
 # look into the difference between DetailView and ListView. Using ListView doesn't cause iteration errors 
 # for reference, look in the difference between code on the employee_info.html and the jobdetails.html files.
-class JobDetailsView( generic.FormView ): 
+class JobDetailsView( generic.CreateView ): 
 	model = Jobs
 	template_name = 'jobimport/jobdetails.html'
 	context_object_name = 'job_list'
 	form_class = JobForm
-	success_url = 'jobimport/success.html'
+	success_url = reverse_lazy( 'JobImport:success' )
 	
 	def get_queryset(self):
 		return Jobs.objects.order_by( '-job_name' )
 	
+	""" to-do: add in code for processing the data from the form?
+		something like this:
+	def 
+	"""
 	
 class EmployeeInfoView( generic.ListView ):
 	model = Employee
 	template_name = 'jobimport/employee_info.html'
 	context_object_name = 'employee'
 	
+	def get_queryset(self):
+		return Employee.objects.order_by( '-employee_id' )
 	
 	
 class TaskInfoView( generic.ListView ):
 	model = TaskCodes 
 	template_name = 'jobimport/task_info.html'
 	context_object_name = 'task'
+	
+	def get_queryset(self):
+		return TaskCodes.objects.order_by( '-code_id' )
 
 
 class SuccessView( generic.ListView ):

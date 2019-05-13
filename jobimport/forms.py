@@ -10,7 +10,6 @@ class FileForm( forms.ModelForm ):
 class JobForm( forms.ModelForm ):
 	job_name = forms.CharField( label='Job name', max_length=25 )
 	start_date = forms.DateTimeField( label='Start date', widget=forms.SelectDateWidget() )
-	last_updated = forms.TimeField( label='Last updated', widget=forms.TimeInput() )
 	class Meta:
 		model = Jobs
-		fields = ["job_id", "job_name", "start_date", "last_updated"]
+		fields = ["job_id", "job_name", "start_date"]

@@ -38,7 +38,7 @@ class Jobs( models.Model ):
 	job_id = models.PositiveSmallIntegerField(default = 1)
 	job_name = models.CharField(max_length = 50)
 	start_date = models.DateTimeField()
-	last_updated = models.DateTimeField( 'Date Updated' )
+	last_updated = models.DateTimeField( 'Date Updated', auto_now=True )
 	#document = models.ForeignKey( Document, on_delete=models.CASCADE )
 	
 	def __str__(self):
