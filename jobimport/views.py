@@ -85,25 +85,18 @@ class IndexView( generic.ListView ):
 	
 # look into the difference between DetailView and ListView. Using ListView doesn't cause iteration errors 
 # for reference, look in the difference between code on the employee_info.html and the jobdetails.html files.
+""" Job-related views """
 class JobDetailsView( generic.CreateView ): 
 	model = Jobs
 	template_name = 'jobimport/jobdetails.html'
 	context_object_name = 'job_list'
 	form_class = JobForm
 	success_url = reverse_lazy( 'JobImport:success' )
-	
-# Job-related views 
-class JobView( generic.ListView ): 
-	model = Jobs
-	template_name = 'jobimport/job_view.html'
-	context_object_name = 'job_list'
-	
-	def get_queryset(self):
-		return Jobs.objects.order_by( '-job_name' )
-	
 
+	
 class JobUpdateView( generic.UpdateView ): 
 	model = Jobs
+	fields = ('job_name', 'start_date',)
 	template_name = 'jobimport/job_update.html'
 	context_object_name = 'job_list'
 	form_class = JobForm
@@ -116,7 +109,17 @@ class JobDeleteView( generic.DeleteView ):
 	context_object_name = 'job_list'
 	form_class = JobForm
 	success_url = reverse_lazy( 'JobImport:success' )
-# END: Job-related views 
+
+
+class JobView( generic.ListView ): 
+	model = Jobs
+	template_name = 'jobimport/job_view.html'
+	context_object_name = 'job_list'
+	
+	def get_queryset(self):
+		return Jobs.objects.order_by( '-job_name' )
+	
+""" END: Job-related views """
 	
 class EmployeeInfoView( generic.ListView ):
 	model = Employee

@@ -7,14 +7,16 @@
 	<h1>Testing! Welcome to the Job Update page!</h1>
 	<p>This should allow you to update existing Jobs (WIP)</p>
 	<div>
-		<form enctype="multipart/form-data" method="POST" action="">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<br><br>
-			<button type="submit">Update</button>
-			
-		</form>
-		<br>
+		{% if job_list %}
+			<form enctype="multipart/form-data" method="POST" action="">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<br><br>
+				<button type="submit", value="Update">Update</button>
+				
+			</form>
+			<br>
+		{% endif %}
 	</div>
 	<div class="bulk">
 		<br><br><br><br>

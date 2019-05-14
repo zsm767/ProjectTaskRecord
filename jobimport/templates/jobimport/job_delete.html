@@ -10,6 +10,7 @@
 		<div>
 			<form enctype="multipart/form-data" method="POST" action="">
 				{% csrf_token %}
+				<p>Are you sure you want to delete {{ job_list }}?</p>
 				{{ form.as_p }}
 				<br><br>
 				<button type="submit">Delete</button>
@@ -17,10 +18,10 @@
 			</form>
 			<br>
 		</div>
-		<div class="bulk">
-			<br><br><br><br>
-			<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
-		</div>
 	{% endif %}
+	<div class="bulk">
+		<br><br><br><br>
+		<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
+	</div>
 </body>
 {% endblock %}

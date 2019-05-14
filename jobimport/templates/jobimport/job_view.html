@@ -9,11 +9,12 @@
 	<div>
 		{% if job_list %}
 			<ul>
-				<li>Current Job Name: "{{ job_list.job_name }}"</li>
-				<li>Current Job ID: "{{ job_list.job_id}}"</li>
-				<li>Current Start Date: {{ job_list.start_date }}</li>
-				<li>Last Updated: {{ job_list.last_updated }}</li>
-				add back in the "for" statement later after more data is added 
+				{% for job in job_list %}
+					<li>Job Name: "{{ job.job_name }}"</li>
+					<li>Job ID: "{{ job.job_id}}"</li>
+					<li>Start Date: {{ job.start_date }}</li>
+					<li>Last Updated: {{ job.last_updated }}</li><br>
+				{% endfor %}
 			</ul>
 		{% endif %}
 
