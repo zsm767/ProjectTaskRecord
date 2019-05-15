@@ -99,16 +99,33 @@ class JobUpdateView( generic.UpdateView ):
 	fields = ('job_name', 'start_date',)
 	template_name = 'jobimport/job_update.html'
 	context_object_name = 'job_list'
-	form_class = JobForm
 	success_url = reverse_lazy( 'JobImport:success' )
+	
+	#testing something out
+	def get_object(self, queryset=None):
+		"""
+			to-do: retrieve the most recent PK/ID from the job page.
+			currently hardcoded to the most recent job, play around with it, possibly link this functionality to part of the 
+			jobview page, to make it easier?
+		"""
+		obj = Jobs.objects.get(id=10)
+		return obj
 
 
 class JobDeleteView( generic.DeleteView ): 
 	model = Jobs
 	template_name = 'jobimport/job_delete.html'
 	context_object_name = 'job_list'
-	form_class = JobForm
 	success_url = reverse_lazy( 'JobImport:success' )
+	
+	def get_object(self, queryset=None):
+		"""
+			to-do: retrieve the most recent PK/ID from the job page.
+			currently hardcoded to the most recent job, play around with it, possibly link this functionality to part of the 
+			jobview page, to make it easier?
+		"""
+		obj = Jobs.objects.get(id=10)
+		return obj
 
 
 class JobView( generic.ListView ): 
