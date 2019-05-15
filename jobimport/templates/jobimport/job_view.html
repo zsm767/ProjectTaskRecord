@@ -13,7 +13,10 @@
 					<li>Job Name: "{{ job.job_name }}"</li>
 					<li>Job ID: "{{ job.job_id}}"</li>
 					<li>Start Date: {{ job.start_date }}</li>
-					<li>Last Updated: {{ job.last_updated }}</li><br>
+					<li>Last Updated: {{ job.last_updated }}</li>
+					<a href="{% url 'JobImport:job_update' job.job_id %}">Update</a>
+					<a href="{% url 'JobImport:job_delete' job.job_id %}">Delete</a>
+					<br>
 				{% endfor %}
 			</ul>
 		{% endif %}
@@ -23,8 +26,6 @@
 		<br><br><br><br>
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 		<a href="{% url 'JobImport:job_details' 1 %}" class="btn btn-outline-secondary btn-tiny">Create New Job</a>
-		<a href="{% url 'JobImport:job_update' 1 %}" class="btn btn-outline-secondary btn-tiny">Update Existing Job</a>
-		<a href="{% url 'JobImport:job_delete' 1 %}" class="btn btn-outline-secondary btn-tiny">Delete Existing Job</a>
 	</div>
 	
 </body>

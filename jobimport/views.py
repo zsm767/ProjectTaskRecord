@@ -108,7 +108,7 @@ class JobUpdateView( generic.UpdateView ):
 			currently hardcoded to the most recent job, play around with it, possibly link this functionality to part of the 
 			jobview page, to make it easier?
 		"""
-		obj = Jobs.objects.get(id=10)
+		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 
 
@@ -124,7 +124,7 @@ class JobDeleteView( generic.DeleteView ):
 			currently hardcoded to the most recent job, play around with it, possibly link this functionality to part of the 
 			jobview page, to make it easier?
 		"""
-		obj = Jobs.objects.get(id=10)
+		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 
 

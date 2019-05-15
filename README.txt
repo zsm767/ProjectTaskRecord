@@ -29,3 +29,14 @@ Update:
 	-Creating "filename_test.xslx" versions with these updates, might make a template file
 
 +Next: clean up the pages, move things around for a better presentation.
+
+2019-05-15
+Update:
+
++CRUD properties for the Job objects/tables is working:
+	-Individual pages for update, deletion, creation, and list view
+		+Next steps would include moving the update/delete buttons to link with individual 
+		 jobs listed on the view page
+
++After this, will need to work on the model settings getting the PKs/FKs for each model hooked up
++After *that*, need to work on re-organizing the page layout to display things properly
