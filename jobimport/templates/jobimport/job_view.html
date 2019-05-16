@@ -17,9 +17,10 @@
 					<a href="{% url 'JobImport:job_update' job.job_id %}">Update</a>
 					<a href="{% url 'JobImport:job_delete' job.job_id %}">Delete</a>
 					<br>
-					<a href="">View Employees</a>
+					<!-- temporarily hardcoding the page while working on getting associations working -->
+					<a href="{% url 'JobImport:employee_info' 1 %}">View Employees</a>
 					<br>
-					<a href="">View Task Information</a>
+					<a href="{% url 'JobImport:task_info' 1 %}">View Task Information</a>
 					<br>
 				{% endfor %}
 			</ul>
