@@ -36,7 +36,9 @@ Update:
 +CRUD properties for the Job objects/tables is working:
 	-Individual pages for update, deletion, creation, and list view
 		+Next steps would include moving the update/delete buttons to link with individual 
-		 jobs listed on the view page
+		 jobs listed on the view page (COMPLETED 5/15)
 
 +After this, will need to work on the model settings getting the PKs/FKs for each model hooked up
+	-Think about the relations needed between the tables
+
 +After *that*, need to work on re-organizing the page layout to display things properly
