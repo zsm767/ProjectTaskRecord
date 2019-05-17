@@ -14,6 +14,9 @@
 					<li>Job ID: "{{ job.job_id}}"</li>
 					<li>Start Date: {{ job.start_date }}</li>
 					<li>Last Updated: {{ job.last_updated }}</li>
+					<!-- for getting the foreign key value for Jobs objects: 
+					<li>test: {{ job.employee }}</li>
+					-->
 					<a href="{% url 'JobImport:job_update' job.job_id %}">Update</a>
 					<a href="{% url 'JobImport:job_delete' job.job_id %}">Delete</a>
 					<br>
