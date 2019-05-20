@@ -144,7 +144,7 @@ class EmployeeInfoView( generic.ListView ):
 	context_object_name = 'employee'
 	
 	def get_queryset(self):
-		return Employee.objects.order_by( '-employee_id' )
+		return Employee.objects.order_by( 'employee_id' )
 	
 	
 class TaskInfoView( generic.ListView ):
@@ -153,7 +153,7 @@ class TaskInfoView( generic.ListView ):
 	context_object_name = 'task'
 	
 	def get_queryset(self):
-		return TaskCodes.objects.order_by( '-code_id' )
+		return TaskCodes.objects.order_by( 'code_id' )
 
 
 class SuccessView( generic.ListView ):

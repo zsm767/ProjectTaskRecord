@@ -26,9 +26,12 @@ class Jobs( models.Model ):
 class Employee( models.Model ):
 	#class vars, etc.; relates directly to columns
 	employee_name = models.CharField(max_length = 200)
-	employee_id = models.CharField(max_length = 8)
+	employee_id = models.CharField(max_length = 8, unique=True)
 	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=True, related_name='employee' )
 	#unique id?
+	
+	class Meta:
+		ordering = ['employee_id']
 	
 	#default __str__ func for printing
 	def __str__(self):
@@ -40,6 +43,9 @@ class TaskCodes( models.Model ):
 	code_desc = models.CharField(max_length = 50)
 	phase = models.CharField(default = "00", max_length = 2)
 	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=True, related_name='task' )
+	
+	class Meta:
+		ordering = ['code_id']
 	
 	def __str__(self):
 		return self.code_desc

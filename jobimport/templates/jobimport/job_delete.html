@@ -10,7 +10,7 @@
 		<div>
 			<form enctype="multipart/form-data" method="POST" action="">
 				{% csrf_token %}
-				<p>Are you sure you want to delete {{ job_list }}?</p>
+				<p>Are you sure you want to delete job "<b>{{ job_list }}</b>"?</p>
 				{{ form.as_p }}
 				<br><br>
 				<button type="submit">Delete</button>
