@@ -4,7 +4,8 @@ from .models import *
 
 class FileForm( forms.ModelForm ):
 	#testing something out...
-	job_id = forms.ChoiceField( label='Choose a job to link this to:', choices=Jobs.objects.all() )
+	jobs = Jobs.objects.all()
+	job_id = forms.ModelChoiceField( queryset=jobs, label='Choose a job to link this to:' )
 	class Meta:
 		model = File
 		fields= ["name", "filepath"]

@@ -27,7 +27,8 @@ def showfile( request ):
 	form = FileForm( request.POST or None, request.FILES or None )
 	if form.is_valid():
 		form.save()
-		
+	print( form.is_valid() )
+	print( form.is_bound )
 	context = { 'filepath': filepath, 
 				'form': form,
 				'filename': filename,
@@ -64,14 +65,6 @@ def showfile( request ):
 				return render( request, 'jobimport/success.html' )
 
 	return render( request, 'jobimport/file.html', context )
-
-	
-
-@require_POST
-def file_upload( request ):
-	save_path = os.path.join( settings.MEDIA_ROOT, 'uploads', request.FILES['file'] )
-	path = default.storage.save( save_path, request.FILES['file'] )
-	return default_storage.path( path )
 	
 
 class IndexView( generic.ListView ):
