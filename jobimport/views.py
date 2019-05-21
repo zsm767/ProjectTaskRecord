@@ -24,17 +24,16 @@ def showfile( request ):
 	filepath = lastfile.filepath
 	filename = lastfile.name
 	
-	form = FileForm( request.POST or None, request.FILES or None )
-	if form.is_valid():
-		form.save()
-	print( form.is_valid() )
-	print( form.is_bound )
-	context = { 'filepath': filepath, 
-				'form': form,
-				'filename': filename,
-			  }
-	
 	if request.method == 'POST':
+		form = FileForm( request.POST or None, request.FILES or None )
+		if form.is_valid():
+			form.save()
+		print( form.is_valid() )
+		print( form.is_bound )
+		context = { 'filepath': filepath, 
+					'form': form,
+					'filename': filename,
+				  }
 		dataset = tablib.Dataset('')
 		new_file = request.FILES['myfile']
 		# checking for the file name, to create the appropriate resource object
