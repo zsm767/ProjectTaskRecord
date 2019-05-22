@@ -73,7 +73,7 @@ body {
 	border: 1px solid grey;
 	background: #D6BDA7;
 	color: black;
-	position: bottom;
+	position: absolute;
 	
 }
 
@@ -81,5 +81,5 @@ body {
 	top: 35%;
 	margin: auto;
 	position: absolute;
-	left: 5%
+	left: 5%;
 }

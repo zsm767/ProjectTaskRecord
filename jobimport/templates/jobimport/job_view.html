@@ -20,8 +20,7 @@
 					<a href="{% url 'JobImport:job_update' job.job_id %}">Update</a>
 					<a href="{% url 'JobImport:job_delete' job.job_id %}">Delete</a>
 					<br>
-					<!-- temporarily hardcoding the page while working on getting associations working -->
-					<a href="{% url 'JobImport:employee_info' 1 %}">View Employees</a>
+					<a href="{% url 'JobImport:employee_info' job.job_id %}">View Employees</a>
 					<br>
 					<a href="{% url 'JobImport:task_info' job.job_id %}">View Task Information</a>
 					<br>
@@ -30,8 +29,8 @@
 		{% endif %}
 
 	</div>
+
 	<div class="bulk">
-		<br><br><br><br><br><br><br><br>
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 		<a href="{% url 'JobImport:job_details' 1 %}" class="btn btn-outline-secondary btn-tiny">Create New Job</a>
 	</div>

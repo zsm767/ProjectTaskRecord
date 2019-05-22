@@ -140,7 +140,7 @@ class EmployeeInfoView( generic.ListView ):
 	
 	
 class TaskInfoView( generic.ListView ):
-	model = TaskCodes 
+	model = TaskCodes.objects.all().prefetch_related('tasks') 
 	template_name = 'jobimport/task_info.html'
 	context_object_name = 'task'
 	

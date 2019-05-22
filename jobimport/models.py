@@ -42,7 +42,7 @@ class TaskCodes( models.Model ):
 	code_id = models.PositiveSmallIntegerField(default = 0)
 	code_desc = models.CharField(max_length = 50)
 	phase = models.CharField(default = "00", max_length = 2)
-	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=False, related_name='task' )
+	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=False, related_name='tasks' )
 	
 	class Meta:
 		ordering = ['code_id']
