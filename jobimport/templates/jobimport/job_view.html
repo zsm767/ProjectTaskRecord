@@ -23,7 +23,7 @@
 					<!-- temporarily hardcoding the page while working on getting associations working -->
 					<a href="{% url 'JobImport:employee_info' 1 %}">View Employees</a>
 					<br>
-					<a href="{% url 'JobImport:task_info' 1 %}">View Task Information</a>
+					<a href="{% url 'JobImport:task_info' job.job_id %}">View Task Information</a>
 					<br>
 				{% endfor %}
 			</ul>
