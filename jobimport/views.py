@@ -23,22 +23,22 @@ def showfile( request ):
 	lastfile = File.objects.last()
 	filepath = lastfile.filepath
 	filename = lastfile.name
-	
+	form = FileForm( request.POST or None, request.FILES or None )
+	if form.is_valid():
+		form.save()
+	#print( form.is_valid() )
+	#print( form.is_bound )
+	context = { 'filepath': filepath, 
+				'form': form,
+				'filename': filename,
+			  }
 	if request.method == 'POST':
-		form = FileForm( request.POST or None, request.FILES or None )
-		if form.is_valid():
-			form.save()
-		print( form.is_valid() )
-		print( form.is_bound )
-		context = { 'filepath': filepath, 
-					'form': form,
-					'filename': filename,
-				  }
+
 		dataset = tablib.Dataset('')
 		new_file = request.FILES['myfile']
 		# checking for the file name, to create the appropriate resource object
 		if 'employee' in new_file.name:
-			dataset.headers = ('Employee', 'Name')
+			dataset.headers = ('Employee', 'Name', 'job')
 			employee_resource = EmployeeResource()
 			
 			imported_data = dataset.load( new_file.read() )
@@ -51,7 +51,7 @@ def showfile( request ):
 				return render( request, 'jobimport/success.html' )
 				
 		if 'codes' in new_file.name:
-			dataset.headers = ('Task Code', 'Task Description')
+			dataset.headers = ('Task Code', 'Task Description', 'job' )
 			code_resource = CodeResource()
 			
 			imported_data = dataset.load( new_file.read() )

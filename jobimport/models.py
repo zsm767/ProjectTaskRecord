@@ -27,7 +27,7 @@ class Employee( models.Model ):
 	#class vars, etc.; relates directly to columns
 	employee_name = models.CharField(max_length = 200)
 	employee_id = models.CharField(max_length = 8, unique=True)
-	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=True, related_name='employee' )
+	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=False, related_name='employee' )
 	#unique id?
 	
 	class Meta:
@@ -42,7 +42,7 @@ class TaskCodes( models.Model ):
 	code_id = models.PositiveSmallIntegerField(default = 0)
 	code_desc = models.CharField(max_length = 50)
 	phase = models.CharField(default = "00", max_length = 2)
-	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=True, related_name='task' )
+	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=False, related_name='task' )
 	
 	class Meta:
 		ordering = ['code_id']
