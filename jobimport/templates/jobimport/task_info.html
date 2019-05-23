@@ -10,8 +10,8 @@
 		<p>
 			{% for t in task %}
 			<!-- proof of concept - need to work on how to do this non-hardcoded -->
-				{% if t.job_id == 12 %}
-					<li>{{ t.code_id }} {{ t.code_desc }} {{ t.job }} {{ t.job_id }}</a></li>
+				{% if t.job_id == 11 %}
+					<li>{{ t.code_id }} {{ t.code_desc }} {{ t.job }} {{ t.job_id }} {{ t.id }}</a></li>
 				{% endif %}
 			{% endfor %}
 		</p>
