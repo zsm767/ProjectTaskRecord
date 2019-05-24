@@ -14,10 +14,20 @@ from .resource import *
 
 
 # Create your views here.
-#def pagename( request, PK )
+# def pagename( request, PK )
 
-#index probably for a base page or something, primarily for testing things out
-#think: what are the primary pages for this site going to have?
+# index probably for a base page or something, primarily for testing things out
+# think: what are the primary pages for this site going to have?
+""" testing something out for the exporting of data (trying to have it be on the same page as file upload...)"""
+def export( request ):
+	# default testing with the Task Code file, would need some kind of selection for data set
+	code_resource = CodeResource()
+	dataset = code_resource.export()
+	response = HttpResponse( dataset.csv, content_type='text/csv' )
+	response['Content-Disposition'] = 'attachment; filename="task_codes.csv"'
+	return response
+
+
 def showfile( request ):
 	# note: will need to change some of the names around, due to this only working with one upload model/type
 	lastfile = File.objects.last()

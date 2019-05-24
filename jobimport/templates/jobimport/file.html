@@ -20,11 +20,6 @@
 			<button type="submit">Upload</button>
 		</form>
 		<br><br>
-		{% if filename %}
-			<p><b>Last Uploaded File:</b> {{ filename }}</p>
-			<p>{{ result }}</p>
-		{% endif %}
-		<br><br>
 		<div class="bulk">
 			<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 		</div>
