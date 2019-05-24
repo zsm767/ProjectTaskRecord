@@ -136,7 +136,7 @@ class EmployeeInfoView( generic.ListView ):
 	context_object_name = 'employee'
 	
 	def get_queryset(self):
-		return Employee.objects.order_by( 'employee_id' )
+		return Employee.objects.all().filter(job__job_id=self.kwargs['pk'])
 	
 	
 class TaskInfoView( generic.ListView ):
@@ -144,8 +144,14 @@ class TaskInfoView( generic.ListView ):
 	template_name = 'jobimport/task_info.html'
 	context_object_name = 'task'
 	
+	"""
+	def get_context_data(self, **kwargs):
+		test = TaskCodes.objects.get(job__job_id=2)
+		# need to do something else here, kwargs is empty for whatever reason
+	"""
+	
 	def get_queryset(self):
-		return TaskCodes.objects.order_by( 'code_id' )
+		return TaskCodes.objects.all().filter(job__job_id=self.kwargs['pk'])
 
 
 class SuccessView( generic.ListView ):
