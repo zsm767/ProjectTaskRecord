@@ -3,18 +3,21 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Testing! Welcome to the Task Information page!</h1>
+<h1>Welcome to the Task Information page!</h1>
+<h3>This displays the current tasks listed for the associated job you cliked on.</h3>
+<p>Viewing task information for the current job:</p>
 <body>
-	<div>
+	<div class="d-flex flex-column flex-wrap">
 		{% if task %}
-		<p>
-			{% for t in task %}
-					<li>{{ t.code_id }} || {{ t.code_desc }} || {{ t.job.job_id }} || {{ t.job_id }} || {{ t.id }}</li>
-			{% endfor %}
-		</p>
+			<table class="table-responsive">
+				{% for t in task %}
+						<p>{{ t.code_id }} || {{ t.code_desc }} || {{ t.job.job_id }} || {{ t.job.job_name }}</p>
+				{% endfor %}
+			</table>
 		{% endif %}
 	</div>
-	<div class="bulk">
+	
+	<div class="container-fluid">
 		<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
 	</div>
 </body>

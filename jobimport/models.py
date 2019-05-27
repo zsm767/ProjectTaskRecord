@@ -18,6 +18,8 @@ class Jobs( models.Model ):
 	start_date = models.DateTimeField()
 	last_updated = models.DateTimeField( 'Date Updated', auto_now=True )
 	#document = models.ForeignKey( Document, on_delete=models.CASCADE )
+	# testing out some things to correct the functionality
+	# employee = models.ForeignKey( Employee, on_delete=models.CASCADE, null=False, related_name='job_emps')
 	
 	def __str__(self):
 		return self.job_name
@@ -28,7 +30,9 @@ class Employee( models.Model ):
 	employee_name = models.CharField(max_length = 200)
 	employee_id = models.CharField(max_length = 8, unique=True)
 	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=False, related_name='employee' )
-	#unique id?
+	"""
+	for future usage: job = models.ManyToManyField( Jobs )
+	"""
 	
 	class Meta:
 		ordering = ['employee_id']
@@ -43,6 +47,9 @@ class TaskCodes( models.Model ):
 	code_desc = models.CharField(max_length = 50)
 	phase = models.CharField(default = "00", max_length = 2)
 	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=False, related_name='tasks' )
+	"""
+	for future usage: job = models.ManyToManyField( Jobs )
+	"""
 	
 	class Meta:
 		ordering = ['code_id']
