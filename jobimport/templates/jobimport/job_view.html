@@ -4,8 +4,17 @@
 {% block content %} 
 <body>
 
-	<h1>Testing! Welcome to the Job Details page!</h1>
-	<p>Should list the details for each job currently stored in the database</p>
+	<h1 class="text-center">Welcome to the Job Information Page!</h1>
+	<h3 class="text-center">This lists the currently available jobs.</h3>
+	<p class="lead text-center">In order to update or delete one of these jobs, please click on the respective links for "Update" or "Delete"</p>
+	<br>
+	
+	<div class="alert alert-info" role="alert">
+		<h4>Important information!</h4>
+		<li>If you want to view the Employee information, click on the "Employee" link.</li>
+		<li class="mb-0">If you want to view the Task Code information, click on the "Task" link.</li>
+	</div>
+	
 	<div>
 		{% if job_list %}
 			<ul>
@@ -30,7 +39,7 @@
 
 	</div>
 
-	<div class="bulk">
+	<div class="container-fluid">
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 		<a href="{% url 'JobImport:job_details' 1 %}" class="btn btn-outline-secondary btn-tiny">Create New Job</a>
 	</div>

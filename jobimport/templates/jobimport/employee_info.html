@@ -3,24 +3,41 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Testing! Welcome to the Employee Information page!</h1>
+<h1 class="text-center">Welcome to the Employee Information page!</h1>
+<h3 class="text-center">This displays the employees currently assigned.</h3>
+<p class="lead text-center">Viewing the employee information for the current job</p>
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{% url 'JobImport:index' %}">Home</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'JobImport:job_view' 1 %}">Job List</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Employee Information</li>
+	</ol>
+</nav>
+
 <body>
 	<div>
-		<p>Displaying Employee Information on the Current Job:</p>
 		{% if employee %}
-			<ul>
+		<table class="table table-bordered table-hover table-sm table-striped">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Employee ID</th>
+					<th scope="col">Employee Name</th>
+				</tr>
+			</thead>
+			<tbody>
 				{% for emp in employee %}
-					<li><b>Employee Name:</b> {{ emp.employee_name }}</li>
-					<li><b>Employee ID:</b> {{ emp.employee_id }}</li>
-					<!-- for getting the FK value: <li>test: {{ emp.job }} -->
-					
-					<br>
+					<tr>
+						<td>{{ emp.employee_name }}</td>
+						<td>{{ emp.employee_id }}</td>
+					</tr>
 				{% endfor %}
-			</ul>
+			</tbody>
+		</table>
 		{% endif %}
 	</div>
 	
-	<div class="bulk">
+	<div class="container-fluid">
 		<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
 	</div>
 

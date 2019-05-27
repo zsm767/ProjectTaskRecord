@@ -5,12 +5,21 @@
 
 <h1 class="text-center">Welcome to the Task Information page!</h1>
 <h3 class="text-center">This displays the current tasks listed for the associated job you cliked on.</h3>
-<p class="lead text-center">Viewing task information for the current job:</p>
+<p class="lead text-center">Viewing task information for the current job</p>
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{% url 'JobImport:index' %}">Home</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'JobImport:job_view' 1 %}">Job List</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Task Information</li>
+	</ol>
+</nav>
+
 <body>
 	<div>
 		{% if task %}
-		<table class="table table-bordered table-hover table-sm">
-			<thead>
+		<table class="table table-bordered table-hover table-sm table-striped">
+			<thead class="thead-light">
 				<tr>
 					<th scope="col">Task Code</th>
 					<th scope="col">Task Description</th>
