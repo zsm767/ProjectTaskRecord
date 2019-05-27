@@ -3,20 +3,34 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Welcome to the Task Information page!</h1>
-<h3>This displays the current tasks listed for the associated job you cliked on.</h3>
-<p>Viewing task information for the current job:</p>
+<h1 class="text-center">Welcome to the Task Information page!</h1>
+<h3 class="text-center">This displays the current tasks listed for the associated job you cliked on.</h3>
+<p class="lead text-center">Viewing task information for the current job:</p>
 <body>
-	<div class="d-flex flex-column flex-wrap">
+	<div>
 		{% if task %}
-			<table class="table-responsive">
+		<table class="table table-bordered table-hover table-sm">
+			<thead>
+				<tr>
+					<th scope="col">Task Code</th>
+					<th scope="col">Task Description</th>
+					<th scope="col">Job ID</th>
+					<th scope="col">Job Name</th>
+				</tr>
+			</thead>
+			<tbody>
 				{% for t in task %}
-						<p>{{ t.code_id }} || {{ t.code_desc }} || {{ t.job.job_id }} || {{ t.job.job_name }}</p>
+					<tr>
+						<td>Task Code: {{ t.code_id }}</td>
+						<td>Task Description: {{ t.code_desc }}</td>
+						<td>Job ID: {{ t.job.job_id }}</td>
+						<td>Job Name: {{ t.job.job_name }}</td>
+					</tr>
 				{% endfor %}
-			</table>
+			</tbody>
+		</table>
 		{% endif %}
 	</div>
-	
 	<div class="container-fluid">
 		<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
 	</div>
