@@ -26,7 +26,9 @@
 		<br><br>
 		<div class="bulk">
 			<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
-			<a href="{% url 'JobImport:export' %}" class="btn btn-outline-secondary btn-tiny">Export</a>
+			<!-- proof of concept, the below buttons/links should be moved to a more appropriate page after feedback -->
+			<a href="{% url 'JobImport:export' %}" class="btn btn-outline-secondary btn-tiny">Export Task Codes</a>
+			<a href="{% url 'JobImport:employee_export' %}" class="btn btn-outline-secondary btn-tiny">Export Employees</a>
 		</div>
 		</p>
 	</body>

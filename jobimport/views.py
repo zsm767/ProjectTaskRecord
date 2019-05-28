@@ -27,6 +27,14 @@ def export( request ):
 	response['Content-Disposition'] = 'attachment; filename="task_codes.csv"'
 	return response
 
+""" temp function specifically for the employee export functionality, will need to be condensed into once func/class later"""	
+def employee_export( request ):
+	employee_resource = EmployeeResource()
+	dataset = employee_resource.export()
+	response = HttpResponse( dataset.csv, content_type='text/csv' )
+	response['Content-Disposition'] = 'attachment; filename="employees.csv"'
+	return response
+
 
 def showfile( request ):
 	# note: will need to change some of the names around, due to this only working with one upload model/type

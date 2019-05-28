@@ -19,5 +19,6 @@ urlpatterns = [
 	path( 'file_upload', views.showfile, name = 'file' ),
 	path( 'success', views.SuccessView.as_view(), name = 'success' ),
 	path( 'export', views.export, name = 'export' ),
+	path( 'employee_export', views.employee_export, name = 'employee_export' ),
 	
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
