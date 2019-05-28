@@ -1,7 +1,7 @@
 import os
 import tablib
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 from .models import *

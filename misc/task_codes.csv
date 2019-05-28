@@ -1,0 +1,54 @@
+job,code_id,code_desc
+1,95,Pre-Deck
+2,96,Pre-Deck – Test
+1,140,1st - Layout
+1,150,1st - Frame
+1,160,1st - P&L
+1,170,1st - Shear - 1st Side
+1,178,1st - Wall Shimming
+1,210,2nd - Beams
+1,220,2nd - Joist
+1,230,2nd - Sheet
+1,240,2nd - Layout
+1,250,2nd - Frame
+1,260,2nd - P&L
+1,270,2nd - Shear - 1st Side
+1,282,2nd - Rim/Beam
+1,310,3rd - Beams
+1,320,3rd - Joist
+1,330,3rd - Sheet
+1,340,3rd - Layout
+1,350,3rd - Frame
+1,360,3rd - P&L
+1,370,3rd - Shear - 1st Side
+1,382,3rd - Rim/Beam
+1,410,4th - Beams
+1,420,4th - Joist
+1,430,4th - Sheet
+1,440,4th - Layout
+1,450,4th - Frame
+1,460,4th - P&L
+1,470,4th - Shear - 1st Side
+1,482,4th - Rim/Beam
+1,510,5th - Beams
+1,520,5th - Joist
+1,530,5th - Sheet
+1,540,5th - Layout
+1,550,5th - Frame
+1,560,5th - P&L
+1,570,5th - Shear - 1st Side
+1,582,5th - Rim/Beam
+1,7101,Straight Edge
+1,7400,Roof - Rim/Beam
+1,7405,Roof - Beams
+1,7410,Roof - Joist
+1,7415,Roof - Rips
+1,7420,Roof - Sheet
+1,7425,Roof - Dbl. Sheet
+1,7435,Roof - Pick-Up
+1,7496,Roof - Twn Hm - roof pick up
+1,7497,Roof - Twn Hm 2nd sheath
+1,7600,Elevation Work
+1,9047,Pick up piece work
+1,9060,Final pick up
+1,9720,Misc hardware

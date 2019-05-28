@@ -18,5 +18,6 @@ urlpatterns = [
 	path( '<int:pk>/task_info', views.TaskInfoView.as_view(), name = 'task_info' ),
 	path( 'file_upload', views.showfile, name = 'file' ),
 	path( 'success', views.SuccessView.as_view(), name = 'success' ),
+	path( 'export', views.export, name = 'export' ),
 	
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
