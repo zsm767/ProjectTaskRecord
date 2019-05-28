@@ -16,8 +16,8 @@
 			
 			<div class="container">
 				<div class ="description">
-					<h1>Testing! Welcome to the index page!</h1>
-					<p>More testing, etc.</p>
+					<h1 class="text-center">Welcome to the landing page!</h1>
+					<h3 class="text-center">If a job was created but is missing files for it, click on the "Upload New Files" button!</h3>
 					<a href="{% url 'JobImport:file' %}" class="btn btn-outline-secondary btn-small">Upload New Files</a>
 				</div>
 			</div>
@@ -25,10 +25,15 @@
 		</header>
 		
 		<div class ="bulk">
-			<h2>Testing some more stuff down below over here</h2>
-				<p>Multiple buttons to link to the different pages. It won't work for now, due to data missing in the DB.</p>
-				<p>Using a button template to remove functionality, but mess with the layout.</p>
-				<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Job Details</a>
+			<h2>Getting Started:</h2>
+				<p class="lead">Clicking on the "Job Information" button will take you to the Job Info page, wherein you can do the following:</p>
+				<li>Create a new job</li>
+				<li>Update the information in a current job</li>
+				<li>Delete a job</li>
+				<li>View employee and task code information on the currently-created jobs</li>
+				<p>Click below and let's go!</p>
+				<br>
+				<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Job Information</a>
 		</div>
 		
 	</body>

@@ -77,10 +77,10 @@ body {
 }
 
 .bulk {
-	/*top: 35%;*/
+	top: 35%;
 	margin: auto;
 	position: auto;
-	/*left: 5%;*/
+	left: 5%;
 }
 
 .container-fluid a{

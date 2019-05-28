@@ -2,17 +2,20 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% block content %} 
+<title>Job Delete</title>
+
 <body>
 
-	<h1>Testing! Welcome to the Job Deletion page!</h1>
-	<p>This page should allow you to delete existing jobs in the database.</p>
+	<h1 class="text-center">Welcome to the Job Deletion page!</h1>
+	<h3 class="text-center">This page allows you to delete the current job</h3>
+	<br><br>
 	{% if job_list %}
-		<div>
+		<div class="text-center">
 			<form enctype="multipart/form-data" method="POST" action="">
 				{% csrf_token %}
 				<p>Are you sure you want to delete job "<b>{{ job_list }}</b>"?</p>
 				{{ form.as_p }}
-				<br><br>
+				<br>
 				<button type="submit">Delete</button>
 				
 			</form>

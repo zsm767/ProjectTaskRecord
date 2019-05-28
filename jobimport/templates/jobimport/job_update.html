@@ -2,10 +2,13 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% block content %} 
-<body>
+<title>Job Update</title>
 
-	<h1>Testing! Welcome to the Job Update page!</h1>
-	<p>This should allow you to update existing Jobs (WIP)</p>
+<body>
+	<h1 class="text-center">Welcome to the Job Update page!</h1>
+	<h3 class="text-center">This page allows you to update the following:</h3>
+	<p class="lead text-center">The Job Name and the Start Date for the job</p>
+	<br>
 	<div>
 		{% if job_list %}
 			<form enctype="multipart/form-data" method="POST" action="">
@@ -22,6 +25,5 @@
 		<br><br><br><br>
 		<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
 	</div>
-	
 </body>
 {% endblock %}

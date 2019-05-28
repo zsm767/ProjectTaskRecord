@@ -11,7 +11,11 @@
 	</head>
 
 	<body>
-		<h1>File Uploader</h1>
+		<h1 class="text-center">File Uploader</h1>
+		<h3 class="text-center">This page allows you to upload a file for an existing job</h3>
+		<p class="lead text-center">Click on the "Choose File" button to select a file to upload</p>
+		<p class="text-center">Then, click on the "Upload" button to upload the file.</p>
+		<br><br>
 		<form enctype="multipart/form-data" method="POST" action="">
 			{% csrf_token %}
 			{{ form.non_field_errors }}
