@@ -33,3 +33,4 @@ class CodeResource( resources.ModelResource ):
 		import_id_fields = ('code_id',)
 		fields = ( 'code_id', 'code_desc', 'job' )
 		
+	""" TO-DO: add in handling for the budget/footage columns in the file, based off of the model changes"""

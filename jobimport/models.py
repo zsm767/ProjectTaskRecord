@@ -57,3 +57,18 @@ class TaskCodes( models.Model ):
 	def __str__(self):
 		return self.code_desc
 	#more class-unique funcs
+	
+""" 
+	TO-DO: These don't need to be individual models, they can be moved to an existing model
+	Considering that the data is stored in the task code file, and that the budget/footage has an associated task to it,
+	it would make the most sense to put it there
+	
+	consider adding in the following:
+	total_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
+	actual_budget = ...
+	percentage_budget = ...
+	
+	total_footage = models.PositiveSmallIntegerField( default = 0 )
+	actual_footage = ...
+	percentage_footage = ...
+"""
