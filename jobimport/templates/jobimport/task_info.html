@@ -4,7 +4,7 @@
 {% block content %}
 <title>Task Info</title>
 
-<h1 class="text-center">Welcome to the Task Information page!</h1>
+<h1 class="text-center">Task Information</h1>
 <h3 class="text-center">This displays the current tasks listed for the associated job you cliked on.</h3>
 <p class="lead text-center">Viewing task information for the current job</p>
 
@@ -31,10 +31,10 @@
 			<tbody>
 				{% for t in task %}
 					<tr>
-						<td>Task Code: {{ t.code_id }}</td>
-						<td>Task Description: {{ t.code_desc }}</td>
-						<td>Job ID: {{ t.job.job_id }}</td>
-						<td>Job Name: {{ t.job.job_name }}</td>
+						<td>{{ t.code_id }}</td>
+						<td>{{ t.code_desc }}</td>
+						<td>{{ t.job.job_id }}</td>
+						<td>{{ t.job.job_name }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>
