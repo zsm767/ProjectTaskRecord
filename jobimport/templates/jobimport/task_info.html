@@ -26,6 +26,10 @@
 					<th scope="col">Task Description</th>
 					<th scope="col">Job ID</th>
 					<th scope="col">Job Name</th>
+					<th scope="col">Total Footage</th>
+					<th scope="col">Actual Footage</th>
+					<th scope="col">Total Budget</th>
+					<th scope="col">Actual Budget</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,6 +39,10 @@
 						<td>{{ t.code_desc }}</td>
 						<td>{{ t.job.job_id }}</td>
 						<td>{{ t.job.job_name }}</td>
+						<td>{{ t.footage }}</td>
+						<td>{{ t.actual_footage }}</td>
+						<td>{{ t.budget }}</td>
+						<td>{{ t.actual_budget }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

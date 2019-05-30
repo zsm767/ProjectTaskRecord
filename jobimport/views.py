@@ -102,7 +102,7 @@ class JobDetailsView( generic.CreateView ):
 	template_name = 'jobimport/jobdetails.html'
 	context_object_name = 'job_list'
 	form_class = JobForm
-	success_url = reverse_lazy( 'JobImport:success' )
+	success_url = 'jobview'
 
 	
 class JobUpdateView( generic.UpdateView ): 
@@ -110,7 +110,7 @@ class JobUpdateView( generic.UpdateView ):
 	fields = ('job_name', 'start_date',)
 	template_name = 'jobimport/job_update.html'
 	context_object_name = 'job_list'
-	success_url = reverse_lazy( 'JobImport:success' )
+	success_url = 'jobview'
 	
 	#testing something out
 	def get_object(self, queryset=None):
@@ -127,7 +127,7 @@ class JobDeleteView( generic.DeleteView ):
 	model = Jobs
 	template_name = 'jobimport/job_delete.html'
 	context_object_name = 'job_list'
-	success_url = reverse_lazy( 'JobImport:success' )
+	success_url = 'jobview'
 	
 	def get_object(self, queryset=None):
 		"""

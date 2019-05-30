@@ -2,6 +2,8 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.utils.timezone import now
+
 #from jobimport.models import [ModelNames] || import jobimport.models
 # Create your models here.
 class File( models.Model ):
@@ -15,7 +17,7 @@ class File( models.Model ):
 class Jobs( models.Model ):
 	job_id = models.PositiveSmallIntegerField(default = 1, unique=True)
 	job_name = models.CharField(max_length = 50)
-	start_date = models.DateTimeField()
+	start_date = models.DateTimeField(default=timezone.now)
 	last_updated = models.DateTimeField( 'Date Updated', auto_now=True )
 	#document = models.ForeignKey( Document, on_delete=models.CASCADE )
 	# testing out some things to correct the functionality
