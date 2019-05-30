@@ -10,29 +10,26 @@
 	</head>
 
 	<body>
-		<header class="header">
-			<div class="overlay"></div>
-			
-			<div class="container">
-				<div class ="description">
-					<h1 class="text-center">Welcome to the landing page!</h1>
-					<h3 class="text-center">If a job was created but is missing files for it, click on the "Upload New Files" button!</h3>
-					<a href="{% url 'JobImport:file' %}" class="btn btn-outline-secondary btn-small">Upload New Files</a>
-				</div>
+		<div>
+			<h1 class="text-center">Welcome to the landing page!</h1>
+			<br>
+			<div class="alert alert-info" role="alert">
+				<h4 class="text-center">If a job was created but is missing files for it, click on the "Upload New Files" button!</h4>
 			</div>
-			
-		</header>
-		
+			<br>
+		</div>
 		<div class ="bulk">
-			<h2>Getting Started:</h2>
+			<h4>Getting Started:</h4>
 				<p class="lead">Clicking on the "Job Information" button will take you to the Job Info page, wherein you can do the following:</p>
 				<li>Create a new job</li>
 				<li>Update the information in a current job</li>
 				<li>Delete a job</li>
 				<li>View employee and task code information on the currently-created jobs</li>
+				<br>
 				<p>Click below and let's go!</p>
 				<br>
 				<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Job Information</a>
+				<a href="{% url 'JobImport:file' %}" class="btn btn-outline-secondary btn-small">Upload New Files</a>
 		</div>
 		
 	</body>

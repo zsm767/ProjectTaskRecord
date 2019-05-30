@@ -145,7 +145,7 @@ class JobView( generic.ListView ):
 	context_object_name = 'job_list'
 	
 	def get_queryset(self):
-		return Jobs.objects.order_by( '-job_name' )
+		return Jobs.objects.order_by( '-job_id' )
 	
 """ END: Job-related views """
 	

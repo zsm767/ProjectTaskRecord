@@ -23,6 +23,9 @@ class Jobs( models.Model ):
 	# testing out some things to correct the functionality
 	# employee = models.ForeignKey( Employee, on_delete=models.CASCADE, null=False, related_name='job_emps')
 	
+	class Meta:
+		ordering = ['job_id']
+	
 	def __str__(self):
 		return self.job_name
 
