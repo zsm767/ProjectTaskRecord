@@ -31,6 +31,6 @@ class CodeResource( resources.ModelResource ):
 		skip_unchanged = True
 		report_skipped = False 
 		import_id_fields = ('code_id',)
-		fields = ( 'code_id', 'code_desc', 'job' )
+		fields = ( 'code_id', 'code_desc', 'job', 'footage', 'budget', )
 		
 	""" TO-DO: add in handling for the budget/footage columns in the file, based off of the model changes"""

@@ -47,6 +47,12 @@ class TaskCodes( models.Model ):
 	code_desc = models.CharField(max_length = 50)
 	phase = models.CharField(default = "00", max_length = 2)
 	job = models.ForeignKey( Jobs, on_delete=models.CASCADE, null=False, related_name='tasks' )
+	
+	budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
+	actual_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
+	
+	footage = models.PositiveSmallIntegerField( default = 0 )
+	actual_footage = models.PositiveSmallIntegerField( default = 0 )
 	"""
 	for future usage: job = models.ManyToManyField( Jobs )
 	"""
