@@ -116,6 +116,13 @@ class JobUpdateView( generic.UpdateView ):
 		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 
+	"""
+	def get_form_kwargs(self):
+	 this method is what injects forms with their arguments, might need to call a super version of it first, a la:
+	kwargs = super(JobUpdateView, self).get_form_kwargs()
+	 from here, would want to update the kwargs with the proper foreign data so it updates properly.
+	kwargs[''] = j.tasks.filter(...) / j.employee.filter(...)
+	"""
 
 class JobDeleteView( generic.DeleteView ): 
 	model = Jobs
@@ -124,11 +131,6 @@ class JobDeleteView( generic.DeleteView ):
 	success_url = 'jobview'
 	
 	def get_object(self, queryset=None):
-		"""
-			to-do: retrieve the most recent PK/ID from the job page.
-			currently hardcoded to the most recent job, play around with it, possibly link this functionality to part of the 
-			jobview page, to make it easier?
-		"""
 		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 

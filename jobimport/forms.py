@@ -20,3 +20,10 @@ class JobForm( forms.ModelForm ):
 	class Meta:
 		model = Jobs
 		fields = ["job_id", "job_name", "start_date",]
+		
+	"""
+	def __init__(self, *args, **kwargs):
+		self.actual_budget = kwargs.pop('actual_budget')
+		self.actual_footage = kwargs.pop('actual_footage')
+		super(JobForm, self).__init__(*args, **kwargs)
+	"""
