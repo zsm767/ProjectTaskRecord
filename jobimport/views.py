@@ -107,18 +107,13 @@ class JobDetailsView( generic.CreateView ):
 	
 class JobUpdateView( generic.UpdateView ): 
 	model = Jobs
-	fields = ('job_name', 'start_date',)
+	#fields = ('job_name', 'start_date',)
+	form_class = JobForm
 	template_name = 'jobimport/job_update.html'
 	context_object_name = 'job_list'
 	success_url = 'jobview'
 	
-	#testing something out
 	def get_object(self, queryset=None):
-		"""
-			to-do: retrieve the most recent PK/ID from the job page.
-			currently hardcoded to the most recent job, play around with it, possibly link this functionality to part of the 
-			jobview page, to make it easier?
-		"""
 		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 
