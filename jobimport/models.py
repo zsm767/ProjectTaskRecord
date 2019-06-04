@@ -19,7 +19,7 @@ class Jobs( models.Model ):
 	job_name = models.CharField(max_length = 50)
 	start_date = models.DateTimeField(default=timezone.now)
 	last_updated = models.DateTimeField( 'Date Updated', auto_now=True )
-	#document = models.ForeignKey( Document, on_delete=models.CASCADE )
+	# document = models.ForeignKey( Document, on_delete=models.CASCADE )
 	# testing out some things to correct the functionality
 	# employee = models.ForeignKey( Employee, on_delete=models.CASCADE, null=False, related_name='job_emps')
 	
@@ -55,9 +55,11 @@ class TaskCodes( models.Model ):
 	
 	budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
 	actual_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
+	accumulated_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
 	
 	footage = models.PositiveSmallIntegerField( default = 0 )
 	actual_footage = models.PositiveSmallIntegerField( default = 0 )
+	accumulated_footage = models.PositiveSmallIntegerField( default = 0 )
 	"""
 	for future usage: job = models.ManyToManyField( Jobs )
 	"""
