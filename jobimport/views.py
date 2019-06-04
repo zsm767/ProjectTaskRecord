@@ -94,8 +94,7 @@ class IndexView( generic.ListView ):
 		return Jobs.objects.order_by( '-last_updated' )[:5]
 	
 	
-# look into the difference between DetailView and ListView. Using ListView doesn't cause iteration errors 
-# for reference, look in the difference between code on the employee_info.html and the jobdetails.html files.
+
 """ Job-related views """
 class JobDetailsView( generic.CreateView ): 
 	model = Jobs
