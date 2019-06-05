@@ -26,12 +26,12 @@ class JobForm( forms.ModelForm ):
 	"""
 	
 class TaskForm( forms.ModelForm ):
-	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now() )
 	# should be changed to a dropdown, to select proper info, etc. 
-	code_id = forms.CharField( label='Task Code ID', max_length=4 )
+	code_desc = forms.ModelChoiceField( label='Task Code Description', empty_label="Select a Task", queryset=TaskCodes.objects.all() )
+	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now() )
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
 	actual_footage = forms.IntegerField( label='Actual Footage', min_value=0 )
 	
 	class Meta:
 		model = TaskCodes
-		fields = ["code_id","actual_budget", "actual_footage",]
+		fields = ["code_desc","actual_budget", "actual_footage",]

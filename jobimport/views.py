@@ -120,8 +120,11 @@ class JobUpdateView( generic.UpdateView ):
 			context['form'] = self.form_class(initial={'job_id': context['Jobs'].job_id})
 			
 		if 'form2' not in context:
-			"""error here: KeyError w/ 'TaskCodes'; need to figure out issue, probably with accessing the context var"""
-			context['form2'] = self.form_class(initial={'actual_budget': context['TaskCodes'].actual_budget})
+			"""
+			working for now, but data isn't being saved. possibly related to key error with the following line in
+			the parens: initial={'code_id': context['TaskCodes'].code_id}
+			"""
+			context['form2'] = self.second_form_class()
 		return context
 		
 	
