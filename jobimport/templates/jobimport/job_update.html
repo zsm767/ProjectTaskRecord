@@ -15,10 +15,15 @@
 				{% csrf_token %}
 				{{ form.as_p }}
 				<br><br>
-				<button type="submit", value="Update">Update</button>
-				
+				<button type="submit", name="form", value="Update">Update Job Info</button>
 			</form>
 			<br>
+			<form enctype="multipart/form-data" method="POST" action="">
+				{% csrf_token %}
+				{{ form2.as_p }}
+				<br><br>
+				<button type="submit", name="form2", value="Update">Update Task Code Info</button>
+			</form>
 		{% endif %}
 	</div>
 	<div class="bulk">

@@ -105,23 +105,59 @@ class JobDetailsView( generic.CreateView ):
 
 	
 class JobUpdateView( generic.UpdateView ): 
-	model = Jobs
+	#model = Jobs
 	#fields = ('job_name', 'start_date',)
 	form_class = JobForm
+	second_form_class = TaskForm
 	template_name = 'jobimport/job_update.html'
 	context_object_name = 'job_list'
 	success_url = 'jobview'
+	
+	
+	def get_context_data(self, **kwargs):
+		context = super(JobUpdateView, self).get_context_data(**kwargs)
+		if 'form' not in context:
+			context['form'] = self.form_class(initial={'job_id': context['Jobs'].job_id})
+			
+		if 'form2' not in context:
+			"""error here: KeyError w/ 'TaskCodes'; need to figure out issue, probably with accessing the context var"""
+			context['form2'] = self.form_class(initial={'actual_budget': context['TaskCodes'].actual_budget})
+		return context
+		
 	
 	def get_object(self, queryset=None):
 		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 
+
+	def form_invalid(self, **kwargs):
+		return self.render_to_response(self.get_context_data(**kwargs))
+		
+	
+	def post(self, request, *args, **kwargs):
+		# getting the user instance
+		self.object = self.get_object()
+		# figuring out which form is being submitted, using the form's submit button
+		if 'form' in request.POST:
+			form_class = self.get_form_class()
+			form_name = 'form'
+		else:
+			form_class = self.second_form_class
+			form_name = 'form2'
+		# getting the form
+		form = self.get_form(form_class)
+		# validating the form
+		if form.is_valid():
+			return self.form_valid(form)
+		else:
+			return self.form_invalid(**{form_name: form})
+			
 	"""
 	def get_form_kwargs(self):
 	 this method is what injects forms with their arguments, might need to call a super version of it first, a la:
 	kwargs = super(JobUpdateView, self).get_form_kwargs()
 	 from here, would want to update the kwargs with the proper foreign data so it updates properly.
-	kwargs[''] = j.tasks.filter(...) / j.employee.filter(...)
+	kwargs['actual_budget'] = j.tasks.filter() / j.employee.filter(...)
 	"""
 
 class JobDeleteView( generic.DeleteView ): 
