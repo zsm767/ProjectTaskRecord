@@ -122,9 +122,9 @@ class JobUpdateView( generic.UpdateView ):
 		if 'form2' not in context:
 			"""
 			working for now, but data isn't being saved. possibly related to key error with the following line in
-			the parens: initial={'code_id': context['TaskCodes'].code_id}
+			the parens: initial={'code_desc': job_id} possibly?
 			"""
-			context['form2'] = self.second_form_class()
+			context['form2'] = self.second_form_class(initial={'code_desc': context['object'].job_id})
 		return context
 		
 	
