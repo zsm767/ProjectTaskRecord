@@ -69,8 +69,13 @@ class TaskCodes( models.Model ):
 	
 	def __str__(self):
 		return self.code_desc
-	#more class-unique funcs
 	
+	#more class-unique funcs
+	"""
+	def accumulate(self):
+	# testing function for the accumulator for both the footage and budget
+	
+	"""
 """ 
 	TO-DO: These don't need to be individual models, they can be moved to an existing model
 	Considering that the data is stored in the task code file, and that the budget/footage has an associated task to it,
