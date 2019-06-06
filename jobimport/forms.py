@@ -30,12 +30,12 @@ class TaskForm( forms.ModelForm ):
 	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now() )
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
 	
-	"""some work needs to be done here to update the list of available task codes to edit...
+	"""some work needs to be done here to update the list of available task codes to edit..."""
 	def __init__(self, *args, **kwargs):
 		code_desc = kwargs.pop('code_desc', None)
 		super(TaskForm, self).__init__(*args, **kwargs)
 		if code_desc:
-			self.fields['code_desc'].queryset = TaskCodes.objects.filter(job__job_id=job_id)"""
+			self.fields['code_desc'].queryset = TaskCodes.objects.filter(job__job_id=job_id)
 	
 	class Meta:
 		model = TaskCodes
