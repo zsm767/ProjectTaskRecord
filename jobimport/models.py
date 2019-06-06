@@ -55,11 +55,10 @@ class TaskCodes( models.Model ):
 	
 	budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
 	actual_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
-	accumulated_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
 	
 	footage = models.PositiveSmallIntegerField( default = 0 )
 	actual_footage = models.PositiveSmallIntegerField( default = 0 )
-	accumulated_footage = models.PositiveSmallIntegerField( default = 0 )
+	
 	"""
 	for future usage: job = models.ManyToManyField( Jobs )
 	"""
@@ -90,3 +89,14 @@ class TaskCodes( models.Model ):
 	actual_footage = ...
 	percentage_footage = ...
 """
+
+class Accumulator( models.Model ):
+	acc_footage = models.PositiveSmallIntegerField( default = 0 )
+	acc_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
+	task_codes = models.ForeignKey( TaskCodes, on_delete=models.CASCADE, null=False, related_name='accumlator' )
+	
+	class Meta:
+		ordering = ['acc_footage']
+	
+	def __str__(self):
+		return self.accumulated_footage

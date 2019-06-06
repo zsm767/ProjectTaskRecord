@@ -29,7 +29,6 @@ class TaskForm( forms.ModelForm ):
 	code_desc = forms.ModelChoiceField( label='Task Code Description', empty_label="Select a Task", queryset=TaskCodes.objects.all() )
 	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now() )
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
-	actual_footage = forms.IntegerField( label='Actual Footage', min_value=0 )
 	
 	"""some work needs to be done here to update the list of available task codes to edit...
 	def __init__(self, *args, **kwargs):
@@ -40,4 +39,4 @@ class TaskForm( forms.ModelForm ):
 	
 	class Meta:
 		model = TaskCodes
-		fields = ["code_desc","actual_budget", "actual_footage",]
+		fields = ["code_desc","actual_budget",]
