@@ -26,7 +26,7 @@ class JobForm( forms.ModelForm ):
 	"""
 	
 class TaskForm( forms.ModelForm ):
-	code_desc = forms.ModelChoiceField( label='Task Code Description', empty_label="Select a Task", queryset=TaskCodes.objects.filter(job__job_id=1) )
+	code_desc = forms.ModelChoiceField( label='Task Code Description', empty_label="Select a Task", queryset=TaskCodes.objects.all() )
 	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now() )
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
 	
@@ -36,6 +36,8 @@ class TaskForm( forms.ModelForm ):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		if code_desc:
 			self.fields['code_desc'].queryset = qs
+			
+	off to the side queryset=TaskCodes.objects.filter(job__job_id=1)
 	"""
 	class Meta:
 		model = TaskCodes
