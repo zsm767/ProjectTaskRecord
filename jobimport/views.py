@@ -105,7 +105,7 @@ class JobDetailsView( generic.CreateView ):
 
 	
 class JobUpdateView( generic.UpdateView ): 
-	#model = Jobs
+	model = Jobs
 	#fields = ('job_name', 'start_date',)
 	form_class = JobForm
 	second_form_class = TaskForm
@@ -120,11 +120,9 @@ class JobUpdateView( generic.UpdateView ):
 			context['form'] = self.form_class(initial={'job_id': context['Jobs'].job_id})
 			
 		if 'form2' not in context:
-			"""
-			working for now, but data isn't being saved. possibly related to key error with the following line in
-			the parens: initial={'code_desc': job_id} possibly?
-			"""
-			context['form2'] = self.second_form_class(initial={'code_desc': context['job_list'].job_id})
+			context['form2'] = self.second_form_class()
+			context.update({'code_desc':context['job_list'].job_id})
+		print('contextB', context)
 		return context
 		
 	

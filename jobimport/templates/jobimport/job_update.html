@@ -11,14 +11,14 @@
 	<br>
 	<div>
 		{% if job_list %}
-			<form enctype="multipart/form-data" method="POST" action="">
+			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:job_update' job_list.job_id %}">
 				{% csrf_token %}
 				{{ form.as_p }}
 				<br><br>
 				<button type="submit", name="form", value="Update">Update Job Info</button>
 			</form>
 			<br><br>
-			<form enctype="multipart/form-data" method="POST" action="">
+			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:job_update' job_list.job_id %}">
 				{% csrf_token %}
 				{{ form2.as_p }}
 				<br><br>
