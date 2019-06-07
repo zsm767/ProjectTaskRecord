@@ -38,4 +38,5 @@ class TaskForm( forms.ModelForm ):
 	
 	class Meta:
 		model = TaskCodes
-		fields = ["code_desc","actual_budget",]
+		fields = ["code_desc","actual_budget","code_id"]
+		exclude = ['code_id']

@@ -121,8 +121,8 @@ class JobUpdateView( generic.UpdateView ):
 			
 		if 'form2' not in context:
 			context['form2'] = self.second_form_class()
-			context.update({'code_desc':context['job_list'].job_id})
-		print('contextB', context)
+			context.update({'code_id':context['job_list'].job_id})
+		print('contextB', context['form2'].fields)
 		return context
 		
 	
