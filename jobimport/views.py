@@ -212,3 +212,14 @@ class SuccessView( generic.ListView ):
 	def get_queryset(self):
 		return 
 	
+	
+class AccumulatorView( generic.ListView ):
+	model = Accumulator
+	template_name = 'jobimport/accumulator.html'
+	context_object_name = 'accumulator'
+	""" not sure if the below will work. Also, might be worth moving back into one model; depends on how functionality for this will work """
+	#footage_sum = Accumulator.objects.aggregate(sum(acc_footage))
+	#budget_sum = Accumulator.objects.aggregate(sum(acc_budget))
+	
+	def get_queryset(self):
+		return 

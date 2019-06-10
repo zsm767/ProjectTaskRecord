@@ -20,5 +20,6 @@ urlpatterns = [
 	path( 'success', views.SuccessView.as_view(), name = 'success' ),
 	path( 'export', views.export, name = 'export' ),
 	path( 'employee_export', views.employee_export, name = 'employee_export' ),
+	path( 'accumulator', views.AccumulatorView.as_view(), name = 'accumulator' ),
 	
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
