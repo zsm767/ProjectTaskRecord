@@ -146,6 +146,7 @@ class JobUpdateView( generic.UpdateView ):
 			form_name = 'form2'
 		# getting the form
 		form = self.get_form(form_class)
+		print(form.field_order)
 		# validating the form
 		if form.is_valid():
 			print('valid? but not saving data...')
