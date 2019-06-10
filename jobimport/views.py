@@ -148,19 +148,12 @@ class JobUpdateView( generic.UpdateView ):
 		form = self.get_form(form_class)
 		# validating the form
 		if form.is_valid():
-			print(form_name)
+			print('valid? but not saving data...')
 			return self.form_valid(form)
 		else:
 			print('something fucked up')
 			return self.form_invalid(**{form_name: form})
 			
-	"""
-	def get_form_kwargs(self):
-	 this method is what injects forms with their arguments, might need to call a super version of it first, a la:
-	kwargs = super(JobUpdateView, self).get_form_kwargs()
-	 from here, would want to update the kwargs with the proper foreign data so it updates properly.
-	kwargs['actual_budget'] = j.tasks.filter() / j.employee.filter(...)
-	"""
 
 class JobDeleteView( generic.DeleteView ): 
 	model = Jobs

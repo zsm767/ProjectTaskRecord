@@ -27,7 +27,7 @@ class JobForm( forms.ModelForm ):
 	
 class TaskForm( forms.ModelForm ):
 	code_desc = forms.ModelChoiceField( label='Task Code Description', empty_label="Select a Task", queryset=TaskCodes.objects.all() )
-	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now() )
+	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now(), required=False)
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
 	
 	"""some work needs to be done here to update the list of available task codes to edit..."""
@@ -35,7 +35,7 @@ class TaskForm( forms.ModelForm ):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		#pretty much need to make sure that this retrieves the value from the URL pk?
 		#filter(job__job_id=1)
-		self.fields['code_desc'].queryset = TaskCodes.objects.none()
+		self.fields['code_desc'].queryset = TaskCodes.objects.all()
 	
 	class Meta:
 		model = TaskCodes
