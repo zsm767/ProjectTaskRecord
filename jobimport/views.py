@@ -121,8 +121,7 @@ class JobUpdateView( generic.UpdateView ):
 			
 		if 'form2' not in context:
 			context['form2'] = self.second_form_class()
-			context.update({'code_id':context['job_list'].job_id})
-		print('contextB', context['form2'].fields)
+			context['form2'].fields['code_desc'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id'])
 		return context
 		
 	
@@ -149,8 +148,10 @@ class JobUpdateView( generic.UpdateView ):
 		form = self.get_form(form_class)
 		# validating the form
 		if form.is_valid():
+			print(form_name)
 			return self.form_valid(form)
 		else:
+			print('something fucked up')
 			return self.form_invalid(**{form_name: form})
 			
 	"""

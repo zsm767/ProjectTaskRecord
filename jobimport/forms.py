@@ -34,9 +34,10 @@ class TaskForm( forms.ModelForm ):
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		#pretty much need to make sure that this retrieves the value from the URL pk?
-		self.fields['code_desc'].queryset = TaskCodes.objects.filter(job__job_id=1)
+		#filter(job__job_id=1)
+		self.fields['code_desc'].queryset = TaskCodes.objects.none()
 	
 	class Meta:
 		model = TaskCodes
-		fields = ["code_desc","actual_budget","code_id"]
-		exclude = ['code_id']
+		fields = ["code_desc","actual_budget",]
+		
