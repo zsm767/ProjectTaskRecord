@@ -130,6 +130,12 @@ class JobUpdateView( generic.UpdateView ):
 		return obj
 
 
+	def form_valid(self, form):
+		""" overriding this to save the object if the form is valid. """
+		self.object = form.save()
+		return super().form_valid(form)
+		
+
 	def form_invalid(self, **kwargs):
 		return self.render_to_response(self.get_context_data(**kwargs))
 		
@@ -217,4 +223,4 @@ class AccumulatorView( generic.ListView ):
 	#budget_sum = Accumulator.objects.aggregate(sum(acc_budget))
 	
 	def get_queryset(self):
-		return 
+		return Accumulator.objects.all()

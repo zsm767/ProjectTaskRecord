@@ -10,7 +10,7 @@ class FileForm( forms.ModelForm ):
 		
 class JobForm( forms.ModelForm ):
 	job_name = forms.CharField( label='Job name', max_length=25 )
-	start_date = forms.DateTimeField( label='Start date', widget=forms.SelectDateWidget() )
+	start_date = forms.DateTimeField( label='Start date', widget=forms.SelectDateWidget(), initial=timezone.now() )
 	#testing something out...
 	#employee_name = forms.MultipleChoiceField( label='Employee name', choices=Employee.objects.all(), widget=forms.SelectMultiple() )
 	
@@ -18,12 +18,6 @@ class JobForm( forms.ModelForm ):
 		model = Jobs
 		fields = ["job_id", "job_name", "start_date",]
 		
-	"""
-	def __init__(self, *args, **kwargs):
-		self.actual_budget = kwargs.pop('actual_budget')
-		self.actual_footage = kwargs.pop('actual_footage')
-		super(JobForm, self).__init__(*args, **kwargs)
-	"""
 	
 class TaskForm( forms.ModelForm ):
 	code_desc = forms.ModelChoiceField( label='Task Code Description', empty_label="Select a Task", queryset=TaskCodes.objects.all() )
