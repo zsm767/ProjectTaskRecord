@@ -27,8 +27,6 @@ class TaskForm( forms.ModelForm ):
 	"""some work needs to be done here to update the list of available task codes to edit..."""
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
-		#pretty much need to make sure that this retrieves the value from the URL pk?
-		#filter(job__job_id=1)
 		self.fields['code_desc'].queryset = TaskCodes.objects.all()
 	
 	class Meta:
