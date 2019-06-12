@@ -220,6 +220,14 @@ class AccumulatorView( generic.ListView ):
 	""" not sure if the below will work. Also, might be worth moving back into one model; depends on how functionality for this will work """
 	#footage_sum = Accumulator.objects.aggregate(sum(acc_footage))
 	#budget_sum = Accumulator.objects.aggregate(sum(acc_budget))
+	""" 
+	alternatively:
+	model = TaskCodes
+	template_name and context_object_name remain the same
+	footage_sum = TaskCodes.objects.aggregate(sum(acc_footage))
+	budget_sum = TaskCodes.objects.aggregate(sum(acc_budget))
+	context.update( 'footage_sum': footage_sum, 'budget_sum': budget_sum)
+	"""
 	
 	def get_queryset(self):
 		return Accumulator.objects.all()
