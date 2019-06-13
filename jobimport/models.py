@@ -95,7 +95,7 @@ class Accumulator( models.Model ):
 		ordering = ['acc_footage']
 	
 	def __str__(self):
-		return self.accumulated_footage
+		return str(self.acc_footage)
 		
 	"""
 	def accumulate(self):

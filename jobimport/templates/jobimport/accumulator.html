@@ -13,10 +13,10 @@
 	
 	<div>
 		{% if accumulator %}
+			{{ accumulator.footage_sum }}
 			<p>testing</p>
 			{% for acc in accumulator %}
-				<p>{{ accumulator.footage_sum }}</p>
-				<p>{{ accumulator.budget_sum }}</p>
+				<p>{{ acc }}</p>
 			{% endfor %}
 		{% endif %}
 	</div>

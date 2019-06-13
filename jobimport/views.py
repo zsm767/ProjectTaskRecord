@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.views import generic
+from django.db.models import Sum
 from .models import *
 from .forms import *
 from django.shortcuts import redirect
@@ -217,9 +218,8 @@ class AccumulatorView( generic.ListView ):
 	model = Accumulator
 	template_name = 'jobimport/accumulator.html'
 	context_object_name = 'accumulator'
-	footage_sum = Accumulator.objects.aggregate(sum(acc_footage))
-	budget_sum = Accumulator.objects.aggregate(sum(acc_budget))
-	context.update( 'footage_sum': footage_sum, 'budget_sum': budget_sum )
+	footage_sum = Accumulator.objects.all().aggregate(Sum('acc_footage'))
+	budget_sum = Accumulator.objects.all().aggregate(Sum('acc_budget'))
 	""" 
 	alternatively:
 	model = TaskCodes
@@ -228,6 +228,12 @@ class AccumulatorView( generic.ListView ):
 	budget_sum = TaskCodes.objects.aggregate(sum(acc_budget))
 	context.update( 'footage_sum': footage_sum, 'budget_sum': budget_sum)
 	"""
+	#testing this out, might not work 
+	def get_context_data(self, **kwargs):
+		context = super(AccumulatorView, self).get_context_data(**kwargs)
+		context.update({'footage_sum': self.footage_sum, 'budget_sum': self.budget_sum})
+		return context
+	
 	
 	def get_queryset(self):
 		return Accumulator.objects.all()
