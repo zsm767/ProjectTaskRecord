@@ -14,8 +14,10 @@
 	<div>
 		{% if accumulator %}
 			<p>testing</p>
+			{{ footage_sum|dictsort:"acc_footage__sum" }}
+			<p>{{ budget_sum }}</p>
 			{% for acc in accumulator %}
-				<p>{{ acc }}</p>
+				<p>testo</p>
 			{% endfor %}
 		{% endif %}
 	</div>
