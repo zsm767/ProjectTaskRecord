@@ -215,26 +215,25 @@ class SuccessView( generic.ListView ):
 	
 	
 class AccumulatorView( generic.ListView ):
-	model = Accumulator
+	model = TaskCodes
 	template_name = 'jobimport/accumulator.html'
 	context_object_name = 'accumulator'
-	footage_sum = Accumulator.objects.all().aggregate(sum = Sum('acc_footage'))
-	budget_sum = Accumulator.objects.all().aggregate(sum = Sum('acc_budget'))
+	footage_sum = TaskCodes.objects.all().aggregate(sum = Sum('acc_footage'))
+	budget_sum = TaskCodes.objects.all().aggregate(sum = Sum('acc_budget'))
 	""" 
 	alternatively:
 	model = TaskCodes
 	template_name and context_object_name remain the same
-	footage_sum = TaskCodes.objects.aggregate(sum(acc_footage))
-	budget_sum = TaskCodes.objects.aggregate(sum(acc_budget))
+	footage_sum = Accumulator.objects.all().aggregate(sum = Sum('acc_footage'))
+	budget_sum = Accumulator.objects.all().aggregate(sum = Sum('acc_budget'))
 	context.update( 'footage_sum': footage_sum, 'budget_sum': budget_sum)
 	"""
 	#testing this out, might not work 
 	def get_context_data(self, **kwargs):
 		context = super(AccumulatorView, self).get_context_data(**kwargs)
 		context.update({'footage_sum': self.footage_sum, 'budget_sum': self.budget_sum})
-		print(context)
 		return context
 	
 	
 	def get_queryset(self):
-		return Accumulator.objects.all()
+		return TaskCodes.objects.all()

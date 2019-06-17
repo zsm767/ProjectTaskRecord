@@ -59,8 +59,15 @@ class TaskCodes( models.Model ):
 	footage = models.PositiveSmallIntegerField( default = 0 )
 	actual_footage = models.PositiveSmallIntegerField( default = 0 )
 	
+	acc_footage = models.PositiveSmallIntegerField( default = 0 )
+	acc_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
+	
 	"""
 	for future usage: job = models.ManyToManyField( Jobs )
+	
+	consider changing the accumulator vars back to the task code model, for easy manipulation/usage
+	acc_footage = models.PositiveSmallIntegerField( default = 0 )
+	acc_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
 	"""
 	
 	class Meta:
