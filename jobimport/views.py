@@ -218,8 +218,8 @@ class AccumulatorView( generic.ListView ):
 	model = Accumulator
 	template_name = 'jobimport/accumulator.html'
 	context_object_name = 'accumulator'
-	footage_sum = Accumulator.objects.all().aggregate(Sum('acc_footage'))
-	budget_sum = Accumulator.objects.all().aggregate(Sum('acc_budget'))
+	footage_sum = Accumulator.objects.all().aggregate(sum = Sum('acc_footage'))
+	budget_sum = Accumulator.objects.all().aggregate(sum = Sum('acc_budget'))
 	""" 
 	alternatively:
 	model = TaskCodes
