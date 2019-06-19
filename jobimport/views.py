@@ -194,12 +194,13 @@ class TaskInfoView( generic.ListView ):
 	model = TaskCodes
 	template_name = 'jobimport/task_info.html'
 	context_object_name = 'task'
+	budget_sum = TaskCodes.objects.all().aggregate(sum = Sum('actual_budget'))
 	
-	"""
 	def get_context_data(self, **kwargs):
-		test = TaskCodes.objects.get(job__job_id=2)
-		# need to do something else here, kwargs is empty for whatever reason
-	"""
+		context = super(TaskInfoView, self).get_context_data(**kwargs)
+		context.update({'budget_sum': self.budget_sum})
+		return context
+	
 	
 	def get_queryset(self):
 		return TaskCodes.objects.all().filter(job__job_id=self.kwargs['pk'])
@@ -217,7 +218,7 @@ class AccumulatorView( generic.ListView ):
 	template_name = 'jobimport/accumulator.html'
 	context_object_name = 'accumulator'
 	footage_sum = TaskCodes.objects.all().aggregate(sum = Sum('acc_footage'))
-	budget_sum = TaskCodes.objects.all().aggregate(sum = Sum('acc_budget'))
+	budget_sum = TaskCodes.objects.all().aggregate(sum = Sum('actual_budget'))
 	""" 
 	alternatively:
 	model = TaskCodes
