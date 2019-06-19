@@ -24,7 +24,7 @@ class TaskForm( forms.ModelForm ):
 	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now(), required=False)
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
 	
-	"""some work needs to be done here to update the list of available task codes to edit..."""
+	"""some work needs to be done here to update the list of available task codes to edit..."""	
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		self.fields['code_desc'].queryset = TaskCodes.objects.all()
