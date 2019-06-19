@@ -132,7 +132,10 @@ class JobUpdateView( generic.UpdateView ):
 
 
 	def form_valid(self, form):
-		""" overriding this to save the object if the form is valid. """
+		"""
+		overriding this to save the object if the form is valid.
+		currently: not saving the data. 
+		"""
 		form.instance.save()
 		return super(JobUpdateView, self).form_valid(form)
 		

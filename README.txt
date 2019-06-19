@@ -1,3 +1,11 @@
+2019-06-19
+Update (a little late):
++Functionality of the accumulator is working as intended now--still some work to be done to hook it up from each task to a weekly accumulation, but one thing at a time.
+	-After some other changes to allow updating through the webpage, will need to work on 	 separating the values into weekly accumulation
+
++Multiple forms with the job update page is *almost* working properly. The initial form still works as intended, but there's some kind of bug/issue with the second form, tied to the "actual budget" value. While no errors are being thrown, the data isn't being saved
+	-Needs to be fixed in order to take the next step and work on the weekly updating 	 functionality of the application.
+------------------------------------------------------------------------------------------------
 2019-05-24
 Update:
 +File upload re-adjusted in order to function properly with FK values in the employee and task code tables
