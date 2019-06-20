@@ -117,12 +117,12 @@ class JobUpdateView( generic.UpdateView ):
 	
 	def get_context_data(self, **kwargs):
 		context = super(JobUpdateView, self).get_context_data(**kwargs)
+		context['modelTwo'] = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id']) #testing something here
 		if 'form' not in context:
 			context['form'] = self.form_class(initial={'job_id': context['Jobs'].job_id})
 			
 		if 'form2' not in context:
 			context['form2'] = self.second_form_class()
-			context['modelTwo'] = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id']) #testing something here
 			context['form2'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id'])
 		print(context)
 		return context
