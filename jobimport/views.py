@@ -123,7 +123,6 @@ class JobUpdateView( generic.UpdateView ):
 		if 'form2' not in context:
 			context['form2'] = self.second_form_class()
 			context['form2'].fields['code_desc'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id'])
-		print( context ) #at this point, validity is unknown, makes sense due to just being retrieval of context data
 		return context
 		
 	
@@ -131,15 +130,15 @@ class JobUpdateView( generic.UpdateView ):
 		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 
-
+	
 	def form_valid(self, form):
 		"""
 		overriding this to save the object if the form is valid.
 		currently: not saving the data. 
 		"""
-		form.save()
+		self.object = form.save()
 		return super(JobUpdateView, self).form_valid(form)
-		
+	
 
 	def form_invalid(self, **kwargs):
 		return self.render_to_response(self.get_context_data(**kwargs))
@@ -159,7 +158,8 @@ class JobUpdateView( generic.UpdateView ):
 		form = self.get_form(form_class)
 		# validating the form
 		if form.is_valid():
-			print(form.is_valid())
+			print( form.errors.as_data() )
+			form.save(commit=False)
 			return self.form_valid(form)
 		else:
 			return self.form_invalid(**{form_name: form})
