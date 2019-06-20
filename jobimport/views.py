@@ -122,7 +122,9 @@ class JobUpdateView( generic.UpdateView ):
 			
 		if 'form2' not in context:
 			context['form2'] = self.second_form_class()
-			context['form2'].fields['code_desc'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id'])
+			context['modelTwo'] = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id']) #testing something here
+			context['form2'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id'])
+		print(context)
 		return context
 		
 	
@@ -154,11 +156,10 @@ class JobUpdateView( generic.UpdateView ):
 		else:
 			form_class = self.second_form_class
 			form_name = 'form2'
-		# getting the form
+			
 		form = self.get_form(form_class)
-		# validating the form
 		if form.is_valid():
-			print( form.errors.as_data() )
+			print( request.POST )
 			form.save(commit=False)
 			return self.form_valid(form)
 		else:
