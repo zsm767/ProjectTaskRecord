@@ -29,6 +29,26 @@ class TaskForm( forms.ModelForm ):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		self.fields['code_id'].queryset = TaskCodes.objects.all()"""	
 	
+	
+	def post(self, request, *args, **kwargs):
+		# getting the user instance
+		self.object = self.get_object()
+		# figuring out which form is being submitted, using the form's submit button
+		if 'form' in request.POST:
+			form_class = self.get_form_class()
+			form_name = 'form'
+		else:
+			form_class = self.second_form_class
+			form_name = 'form2'
+			
+		form = self.get_form(form_class)
+		if form.is_valid():
+			print( request.POST )
+			form.save()
+			return self.form_valid(form)
+		else:
+			return self.form_invalid(**{form_name: form})
+	
 	class Meta:
 		model = TaskCodes
 		fields = ["code_id","actual_budget",]
