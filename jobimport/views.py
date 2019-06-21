@@ -132,15 +132,15 @@ class JobUpdateView( generic.UpdateView ):
 		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return obj
 
-	
+	"""
 	def form_valid(self, form):
-		"""
+		
 		overriding this to save the object if the form is valid.
 		currently: not saving the data. 
-		"""
+		
 		self.object = form.save()
 		return super(JobUpdateView, self).form_valid(form)
-	
+	"""
 
 	def form_invalid(self, **kwargs):
 		return self.render_to_response(self.get_context_data(**kwargs))
@@ -160,7 +160,7 @@ class JobUpdateView( generic.UpdateView ):
 		form = self.get_form(form_class)
 		if form.is_valid():
 			print( request.POST )
-			form.save(commit=False)
+			form.save()
 			return self.form_valid(form)
 		else:
 			return self.form_invalid(**{form_name: form})

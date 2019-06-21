@@ -20,7 +20,16 @@
 			<br><br>
 			<form enctype="multipart/form-data" method="POST" action="">
 				{% csrf_token %}
-				{{ form2.as_p }}
+				<!-- {{ form2.as_p }} -->
+				{% for hidden in form2.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+				{% for vis in form2.visible_fields %}
+					<div class="fieldWrapper">
+						{{ vis.errors }}
+						{{vis.label_tag }} {{ vis }}
+					</div>
+				{% endfor %}
 				<br><br>
 				<button type="submit", name="form2", value="Update">Update Task Code Info</button>
 			</form>
