@@ -129,8 +129,8 @@ class JobUpdateView( generic.UpdateView ):
 		
 	
 	def get_object(self, queryset=None):
-		obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
-		return obj
+		#obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
+		return self.model.objects.get(job_id=self.kwargs['job_id'])
 
 	"""
 	def form_valid(self, form):
@@ -146,7 +146,24 @@ class JobUpdateView( generic.UpdateView ):
 		return self.render_to_response(self.get_context_data(**kwargs))
 		
 	
-
+	def post(self, request, *args, **kwargs):
+		# getting the user instance
+		self.object = self.get_object()
+		# figuring out which form is being submitted, using the form's submit button
+		if 'form' in request.POST:
+			form_class = self.get_form_class()
+			form_name = 'form'
+		else:
+			form_class = self.second_form_class
+			form_name = 'form2'
+			
+		form = self.get_form(form_class)
+		if form.is_valid():
+			print( request.POST )
+			form.save()
+			return self.form_valid(form)
+		else:
+			return self.form_invalid(self, **{form_name: form})
 		
 
 class JobDeleteView( generic.DeleteView ): 

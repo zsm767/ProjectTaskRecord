@@ -61,6 +61,7 @@ class TaskCodes( models.Model ):
 	
 	acc_footage = models.PositiveSmallIntegerField( default = 0 )
 	acc_budget = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
+	week_of = models.DateField('Week of', auto_now=True )
 	
 	"""
 	for future usage: job = models.ManyToManyField( Jobs )
