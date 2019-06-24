@@ -45,8 +45,6 @@ def showfile( request ):
 	form = FileForm( request.POST or None, request.FILES or None )
 	if form.is_valid():
 		form.save()
-	#print( form.is_valid() )
-	#print( form.is_bound )
 	context = { 'filepath': filepath, 
 				'form': form,
 				'filename': filename,
@@ -132,15 +130,6 @@ class JobUpdateView( generic.UpdateView ):
 		#obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return self.model.objects.get(job_id=self.kwargs['job_id'])
 
-	"""
-	def form_valid(self, form):
-		
-		overriding this to save the object if the form is valid.
-		currently: not saving the data. 
-		
-		self.object = form.save()
-		return super(JobUpdateView, self).form_valid(form)
-	"""
 
 	def form_invalid(self, **kwargs):
 		return self.render_to_response(self.get_context_data(**kwargs))
@@ -158,10 +147,10 @@ class JobUpdateView( generic.UpdateView ):
 			form_name = 'formTwo'
 			
 		form = self.get_form(form_class)
-		print(request.POST)
 		if form.is_valid():
 			try:
 				form.save()
+				print('saved(?)')
 			except:
 				print('uh oh')
 			return self.form_valid(form)

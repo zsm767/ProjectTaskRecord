@@ -10,6 +10,10 @@
 	<p class="lead text-center">The Job Name and the Start Date for the job</p>
 	<br>
 	<div>
+		{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+	
 		{% if job_list %}
 			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:job_update' job_list.job_id %}">
 				{% csrf_token %}
