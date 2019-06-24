@@ -1,0 +1,26 @@
+<!-- budget_update.html purpose is to get this form saving to work, as an interim solution. -->
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %} 
+<title>Budget Update</title>
+<body>
+	<h1 class="text-center">Job Update Page</h1>
+	<h3 class="text-center">This page allows you to update the following:</h3>
+	<p class="lead text-center">The Job Name and the Start Date for the job (placeholder text)</p>
+	<div>
+		{% if taskcodes %}
+			<form enctype="multipart/form-data" method="POST" action="">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<br><br>
+				<button type="submit", name="form", value="Update">Update Budget</button>
+			</form>
+		{% endif %}
+	</div>
+</body>
+
+<div class="bulk">
+	<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
+</div>
+
+{% endblock %}
