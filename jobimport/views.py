@@ -196,7 +196,7 @@ class TaskInfoView( generic.ListView ):
 	
 	def get_context_data(self, **kwargs):
 		context = super(TaskInfoView, self).get_context_data(**kwargs)
-		context.update({'budget_sum': self.budget_sum})
+		context.update({'budget_sum': TaskCodes.objects.filter(job__job_id=self.kwargs['pk']).aggregate(sum = Sum('actual_budget'))})
 		return context
 	
 	
