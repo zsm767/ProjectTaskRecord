@@ -147,6 +147,7 @@ class JobUpdateView( generic.UpdateView ):
 			form_name = 'formTwo'
 			
 		form = self.get_form(form_class)
+		print(request.POST)
 		if form.is_valid():
 			try:
 				form.save()
