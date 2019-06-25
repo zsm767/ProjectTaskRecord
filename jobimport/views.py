@@ -225,7 +225,7 @@ class AccumulatorView( generic.ListView ):
 	budget_sum = Accumulator.objects.all().aggregate(sum = Sum('acc_budget'))
 	context.update( 'footage_sum': footage_sum, 'budget_sum': budget_sum)
 	"""
-	#testing this out, might not work 
+
 	def get_context_data(self, **kwargs):
 		context = super(AccumulatorView, self).get_context_data(**kwargs)
 		context.update({'footage_sum': self.footage_sum, 'budget_sum': self.budget_sum})
