@@ -131,6 +131,12 @@ class JobUpdateView( generic.UpdateView ):
 		return self.model.objects.get(job_id=self.kwargs['job_id'])
 
 
+	def form_valid(self, form):
+		"""TO-DO: code here, possibly for the saving, etc."""
+		form.instance.actual_budget = form.fields['actual_budget']
+		form.save()
+		return super().form_valid(form)
+
 	def form_invalid(self, **kwargs):
 		return self.render_to_response(self.get_context_data(**kwargs))
 		
@@ -149,11 +155,6 @@ class JobUpdateView( generic.UpdateView ):
 		form = self.get_form(form_class)
 		print(request.POST)
 		if form.is_valid():
-			try:
-				form.save()
-				print('saved(?)')
-			except:
-				print('uh oh')
 			return self.form_valid(form)
 		else:
 			return self.form_invalid(self, **{form_name: form})
