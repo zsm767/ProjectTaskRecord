@@ -133,9 +133,12 @@ class JobUpdateView( generic.UpdateView ):
 
 	def form_valid(self, form):
 		"""TO-DO: code here, possibly for the saving, etc."""
+		print( form.fields )
+		# both return the object (job) name - test. 
 		form.instance.actual_budget = form.fields['actual_budget']
-		form.save()
-		return super().form_valid(form)
+		self.object = form.save()
+		print( 'object after calling save(): %s' % self.object )
+		return HttpResponseRedirect(self.get_success_url())
 
 	def form_invalid(self, **kwargs):
 		return self.render_to_response(self.get_context_data(**kwargs))
