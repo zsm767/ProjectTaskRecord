@@ -122,7 +122,7 @@ class JobUpdateView( generic.UpdateView ):
 		if 'formTwo' not in context:
 			context['formTwo'] = self.second_form_class()
 			context['formTwo'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id'])
-		print(context)
+		#print(context)
 		return context
 		
 	
@@ -141,6 +141,7 @@ class JobUpdateView( generic.UpdateView ):
 		return HttpResponseRedirect(self.get_success_url())
 
 	def form_invalid(self, **kwargs):
+		print( self.get_context_data(**kwargs) )
 		return self.render_to_response(self.get_context_data(**kwargs))
 		
 	
@@ -160,7 +161,7 @@ class JobUpdateView( generic.UpdateView ):
 		if form.is_valid():
 			return self.form_valid(form)
 		else:
-			return self.form_invalid(**{form_name: form}) #add 'self' back in when reverting changes
+			return self.form_invalid(**{form_name: form})
 		
 
 class JobDeleteView( generic.DeleteView ): 
