@@ -133,9 +133,9 @@ class JobUpdateView( generic.UpdateView ):
 
 	def form_valid(self, form):
 		"""TO-DO: code here, possibly for the saving, etc."""
-		print( form.fields )
 		# both return the object (job) name - test. 
 		form.instance.actual_budget = form.fields['actual_budget']
+		print( form.instance )
 		self.object = form.save()
 		print( 'object after calling save(): %s' % self.object )
 		return HttpResponseRedirect(self.get_success_url())
@@ -152,15 +152,15 @@ class JobUpdateView( generic.UpdateView ):
 			form_class = self.get_form_class()
 			form_name = 'form'
 		else:
+			self.object = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id']).first()
 			form_class = self.second_form_class
 			form_name = 'formTwo'
 			
 		form = self.get_form(form_class)
-		print(request.POST)
 		if form.is_valid():
 			return self.form_valid(form)
 		else:
-			return self.form_invalid(self, **{form_name: form})
+			return self.form_invalid(**{form_name: form}) #add 'self' back in when reverting changes
 		
 
 class JobDeleteView( generic.DeleteView ): 
