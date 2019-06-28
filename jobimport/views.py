@@ -134,10 +134,14 @@ class JobUpdateView( generic.UpdateView ):
 	def form_valid(self, form):
 		"""TO-DO: code here, possibly for the saving, etc."""
 		# both return the object (job) name - test. 
-		#if form.instance.form_name == 'formTwo':
-			#form.instance.actual_budget = form.fields['actual_budget']
-		print( form.instance )
-		self.object = form.save()
+		#form.instance.actual_budget = form.fields['actual_budget']
+		print( form.fields )
+		if 'code_id' in form.fields:
+			print('did we end up in here?')
+			self.object = form.save(update_fields=['actual_budget'])
+		else:
+			print('oh, rats')
+			self.object = form.save()
 		print( 'object after calling save(): %s' % self.object )
 		return HttpResponseRedirect(self.get_success_url())
 
@@ -154,11 +158,13 @@ class JobUpdateView( generic.UpdateView ):
 			form_class = self.get_form_class()
 			form_name = 'form'
 		else:
+			#doing this causes the is_valid() call to fail.
 			#self.object = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id']).first()
 			form_class = self.second_form_class
 			form_name = 'formTwo'
 			
 		form = self.get_form(form_class)
+		print('testing the form class: %s and the form name: %s\n also checking some form attributes: %s' % (form_class, form_name, form.fields) )
 		if form.is_valid():
 			return self.form_valid(form)
 		else:

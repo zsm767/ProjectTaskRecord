@@ -26,10 +26,17 @@ class TaskForm( forms.ModelForm ):
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
 	
 	
-	"""some work needs to be done here to update the list of available task codes to edit...
+	"""some work needs to be done here to update the list of available task codes to edit..."""
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		self.fields['code_id'].queryset = TaskCodes.objects.all()
+	
+	"""
+	def save(self):
+		tc = super(TaskForm, self).save(commit=False)
+		data = self.cleaned_data
+		tc.objects.update() 
+	might need to work on this more, trying a couple of things first
 	"""
 	
 	class Meta:
