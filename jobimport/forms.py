@@ -31,9 +31,15 @@ class TaskForm( forms.ModelForm ):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		self.fields['code_id'].queryset = TaskCodes.objects.all()
 	
+	
+	def save(self, *args, **kwargs):
+		tf = super(TaskForm, self).save(commit=True)
+		#more to do here?
+		if commit:
+			tf.save()
+		return tf
 	"""
-	def save(self):
-		tc = super(TaskForm, self).save(commit=False)
+		TO-DO: more work here, need to force the update. Changing the above to commit=True still doesn't save the change.
 		data = self.cleaned_data
 		tc.objects.update() 
 	might need to work on this more, trying a couple of things first
