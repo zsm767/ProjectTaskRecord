@@ -33,7 +33,7 @@ class TaskForm( forms.ModelForm ):
 	
 	
 	def save(self, *args, **kwargs):
-		tf = super(TaskForm, self).save(commit=True)
+		tf = super(TaskForm, self).save(commit=False)
 		#more to do here?
 		if commit:
 			tf.save()
