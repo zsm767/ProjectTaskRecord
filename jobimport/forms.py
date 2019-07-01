@@ -26,6 +26,12 @@ class TaskForm( forms.ModelForm ):
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
 	
 	
+	class Meta:
+		model = TaskCodes
+		fields = ["code_id","actual_budget",]
+		exclude = ["code_desc", "phase", "job", "budget", "footage", "actual_footage", "acc_footage", "acc_budget",]
+
+
 	"""some work needs to be done here to update the list of available task codes to edit..."""
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
@@ -35,18 +41,16 @@ class TaskForm( forms.ModelForm ):
 	def save(self, *args, **kwargs):
 		tf = super(TaskForm, self).save(commit=False)
 		#more to do here?
-		if commit:
-			tf.save()
+		if True:
+			tf.save(self, *args, **kwargs)
 		return tf
 	"""
 		TO-DO: more work here, need to force the update. Changing the above to commit=True still doesn't save the change.
 		data = self.cleaned_data
 		tc.objects.update() 
-	might need to work on this more, trying a couple of things first
-	"""
-	
-	class Meta:
-		model = TaskCodes
-		fields = ["code_id","actual_budget",]
-		exclude = ["code_desc", "phase", "job", "budget", "footage", "actual_footage", "acc_footage", "acc_budget",]
+		Note: current issue invoplved the save() method above; with a type error. This is (possibly) due to the update_fields arg being 
+		connected to the MODEL'S save() method, as opposed to the FORM'S. 
 		
+			Try:
+				obj = form.save(commit=False) to get model instance, then call obj.save(update_fields=...)
+	"""
