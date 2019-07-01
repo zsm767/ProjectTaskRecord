@@ -32,24 +32,23 @@ class TaskForm( forms.ModelForm ):
 		exclude = ["code_desc", "phase", "job", "budget", "footage", "actual_footage", "acc_footage", "acc_budget",]
 
 
-	"""some work needs to be done here to update the list of available task codes to edit..."""
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		self.fields['code_id'].queryset = TaskCodes.objects.all()
 	
-	
+	"""
 	def save(self, *args, **kwargs):
 		tf = super(TaskForm, self).save(commit=False)
 		#more to do here?
 		if True:
 			tf.save(self, *args, **kwargs)
 		return tf
-	"""
+	
 		TO-DO: more work here, need to force the update. Changing the above to commit=True still doesn't save the change.
 		data = self.cleaned_data
 		tc.objects.update() 
-		Note: current issue invoplved the save() method above; with a type error. This is (possibly) due to the update_fields arg being 
-		connected to the MODEL'S save() method, as opposed to the FORM'S. 
+		Note: current issue invoplved the save() method above; with a type error. This is (possibly) due to the update_fields arg 
+		being connected to the MODEL'S save() method, as opposed to the FORM'S. 
 		
 			Try:
 				obj = form.save(commit=False) to get model instance, then call obj.save(update_fields=...)

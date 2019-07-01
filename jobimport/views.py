@@ -138,12 +138,15 @@ class JobUpdateView( generic.UpdateView ):
 		print( form.fields )
 		if 'code_id' in form.fields:
 			print('did we end up in here?')
-			self.object = form.save(update_fields=['actual_budget'])
+			self.object = TaskCodes.objects.get(job__job_id=self.kwargs['job_id'])
+			self.object = form.save(commit=False)
+			self.object.save(update_fields=['actual_budget'])
 		else:
-			print('oh, rats')
+			print('this is specifically for the job update form')
 			self.object = form.save()
 		print( 'object after calling save(): %s' % self.object )
 		return HttpResponseRedirect(self.get_success_url())
+
 
 	def form_invalid(self, **kwargs):
 		print( self.get_context_data(**kwargs) )
