@@ -1,0 +1,36 @@
+<!-- task_update.html -->
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<title>Task Update</title>
+
+<body>
+	<h1 class="text-center">Task Update Page</h1>
+	<h3 class="text-center">This page allows you to update the following:</h3>
+	<p class="lead text-center">The Budget and Footage values for the tasks in the current job</p>
+	<br>
+	<div>
+	<!--
+		{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+		
+		{% if task_list %}
+			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:task_update'  %}">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<br><br>
+				<button type="submit", name="form", value="Submit">Update Task Info</button>
+			</form>
+		{% endif %}
+	-->
+		<p>testing</p>
+	</div>
+	
+	<div class="bulk">
+		<br><br><br><br>
+		<a href="{% url 'JobImport:job_view' 1 %}" class="btn btn-outline-secondary btn-tiny">Back to Job Details</a>
+	</div>
+</body>
+
+{% endblock %}

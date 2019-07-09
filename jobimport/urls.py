@@ -16,6 +16,7 @@ urlpatterns = [
 	path( '<int:job_id>/jobdelete', views.JobDeleteView.as_view(), name = 'job_delete' ),
 	path( '<int:pk>/employee_info', views.EmployeeInfoView.as_view(), name = 'employee_info' ),
 	path( '<int:pk>/task_info', views.TaskInfoView.as_view(), name = 'task_info' ),
+	path( '<int:pk>/task_update', views.TaskUpdateView.as_view(), name = 'task_update' ),
 	path( 'file_upload', views.showfile, name = 'file' ),
 	path( 'success', views.SuccessView.as_view(), name = 'success' ),
 	path( 'export', views.export, name = 'export' ),

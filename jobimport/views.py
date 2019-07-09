@@ -221,6 +221,26 @@ class TaskInfoView( generic.ListView ):
 		return TaskCodes.objects.all().filter(job__job_id=self.kwargs['pk'])
 
 
+class TaskUpdateView( generic.UpdateView ):
+	model = TaskCodes
+	form_class = TaskForm
+	template_name = 'jobimport/task_update.html'
+	context_object_name = 'task_list'
+	success_url = 'jobview'
+	
+	""" 
+		TO-DO: add in the necessary code in order to get the functionality up and running. 
+	"""
+	def get_context_data(self, **kwargs):
+		context = super(TaskUpdateView, self).get_context_data(**kwargs)
+		return context
+	
+	
+	def get_object(self, queryset=None):
+		#might need to edit this a bit
+		return self.model.objects.filter(job__job_id=self.kwargs['pk'])
+
+
 class SuccessView( generic.ListView ):
 	template_name = 'jobimport/success.html'
 	
