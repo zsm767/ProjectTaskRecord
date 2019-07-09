@@ -10,21 +10,18 @@
 	<p class="lead text-center">The Budget and Footage values for the tasks in the current job</p>
 	<br>
 	<div>
-	<!--
 		{% if error_message %}
 			<p><strong>{{ error_message }}</strong></p>
 		{% endif %}
 		
 		{% if task_list %}
-			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:task_update'  %}">
+			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:task_update' 1 %}">
 				{% csrf_token %}
 				{{ form.as_p }}
 				<br><br>
 				<button type="submit", name="form", value="Submit">Update Task Info</button>
 			</form>
 		{% endif %}
-	-->
-		<p>testing</p>
 	</div>
 	
 	<div class="bulk">

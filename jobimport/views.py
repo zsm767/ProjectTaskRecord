@@ -122,7 +122,6 @@ class JobUpdateView( generic.UpdateView ):
 		if 'formTwo' not in context:
 			context['formTwo'] = self.second_form_class()
 			context['formTwo'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['job_id'])
-		#print(context)
 		return context
 		
 	
@@ -227,18 +226,36 @@ class TaskUpdateView( generic.UpdateView ):
 	template_name = 'jobimport/task_update.html'
 	context_object_name = 'task_list'
 	success_url = 'jobview'
+
 	
-	""" 
-		TO-DO: add in the necessary code in order to get the functionality up and running. 
 	"""
+		TO-DO: change the get_obj and get_context_data code to properly retrieve the correct data
+	"""
+	def get_object(self, queryset=None):
+		return self.model.objects.get(job__job_id=self.kwargs['pk'])
+
+	
 	def get_context_data(self, **kwargs):
 		context = super(TaskUpdateView, self).get_context_data(**kwargs)
+		if 'form' not in context:
+			context['form'] = self.form_class(initial={'code_id': context['TaskCodes'].code_id})
+			context['form'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
 		return context
+		
 	
-	
-	def get_object(self, queryset=None):
-		#might need to edit this a bit
-		return self.model.objects.filter(job__job_id=self.kwargs['pk'])
+	def post(self, request, *args, **kwargs):
+		# getting the user instance
+		self.object = self.get_object(request)
+		
+		if 'form' in request.POST:
+			form_class = self.get_form_class()
+			form_name = 'form'
+			
+		form = self.get_form(form_class)
+		if form.is_valid():
+			return self.form_valid(form)
+		else:
+			return self.form_invalid(**{form_name: form})
 
 
 class SuccessView( generic.ListView ):
