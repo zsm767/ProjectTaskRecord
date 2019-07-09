@@ -19,14 +19,14 @@
 				{% csrf_token %}
 				{{ form.as_p }}
 				<br><br>
-				<button type="submit", name="form", value="Update">Update Job Info</button>
+				<button type="submit", name="form", value="Submit">Update Job Info</button>
 			</form>
 			<br><br>
 			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:job_update' job_list.job_id %}">
 				{% csrf_token %}
 				{{ formTwo.as_p }}
 				<br><br>
-				<button type="submit", name="formTwo", value="Update">Update Task Code Info</button>
+				<button type="submit", name="formTwo", value="Submit">Update Task Code Info</button>
 			</form>
 		{% endif %}
 	</div>

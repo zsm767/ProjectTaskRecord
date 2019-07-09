@@ -129,18 +129,18 @@ class JobUpdateView( generic.UpdateView ):
 	def get_object(self, queryset=None):
 		#obj = Jobs.objects.get(job_id=self.kwargs['job_id'])
 		return self.model.objects.get(job_id=self.kwargs['job_id'])
-
+		
 
 	def form_valid(self, form):
 		"""TO-DO: code here, possibly for the saving, etc."""
 		# both return the object (job) name - test. 
 		#form.instance.actual_budget = form.fields['actual_budget']
-		print( form.fields )
+		print( 'printing the form fields: %s\n\n' % form.fields )
 		if 'code_id' in form.fields:
 			print('did we end up in here?')
 			self.object = TaskCodes.objects.get(job__job_id=self.kwargs['job_id'])
-			self.object = form.save(commit=False)
-			self.object.save(update_fields=['actual_budget'])
+			self.object.save()
+			#self.object = form.save(update_fields=['actual_budget'])
 		else:
 			print('this is specifically for the job update form')
 			self.object = form.save()
@@ -155,7 +155,7 @@ class JobUpdateView( generic.UpdateView ):
 	
 	def post(self, request, *args, **kwargs):
 		# getting the user instance
-		self.object = self.get_object()
+		self.object = self.get_object(request)
 		# figuring out which form is being submitted, using the form's submit button
 		if 'form' in request.POST:
 			form_class = self.get_form_class()
@@ -167,7 +167,8 @@ class JobUpdateView( generic.UpdateView ):
 			form_name = 'formTwo'
 			
 		form = self.get_form(form_class)
-		print('testing the form class: %s and the form name: %s\n also checking some form attributes: %s' % (form_class, form_name, form.fields) )
+		print('testing the form class: %s and the form name: %s\n also checking some form attributes: %s\n\n' % (form_class, form_name, form.fields) )
+		print( 'printing POST data: %s\n\n' % request.POST)
 		if form.is_valid():
 			return self.form_valid(form)
 		else:
