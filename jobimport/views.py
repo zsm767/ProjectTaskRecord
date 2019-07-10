@@ -232,7 +232,7 @@ class TaskUpdateView( generic.UpdateView ):
 		TO-DO: change the get_obj and get_context_data code to properly retrieve the correct data
 	"""
 	def get_object(self, queryset=None):
-		return self.model.objects.get(job__job_id=self.kwargs['pk'])
+		return self.model.objects.filter(job__job_id=self.kwargs['pk']).first()
 
 	
 	def get_context_data(self, **kwargs):
@@ -253,9 +253,12 @@ class TaskUpdateView( generic.UpdateView ):
 			form_name = 'form'
 			
 		form = self.get_form(form_class)
+		print( '\n %s \n' % request.POST )
 		if form.is_valid():
+			print('we are valid')
 			return self.form_valid(form)
 		else:
+			print('we are not valid')
 			return self.form_invalid(**{form_name: form})
 
 

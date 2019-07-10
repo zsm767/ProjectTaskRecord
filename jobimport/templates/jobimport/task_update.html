@@ -15,11 +15,11 @@
 		{% endif %}
 		
 		{% if task_list %}
-			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:task_update' 1 %}">
+			<form enctype="multipart/form-data" method="POST" action="{% url 'JobImport:task_update' task_list.code_id %}">
 				{% csrf_token %}
 				{{ form.as_p }}
 				<br><br>
-				<button type="submit", name="form", value="Submit">Update Task Info</button>
+				<button type="submit", name="form", value="Update">Update Task Info</button>
 			</form>
 		{% endif %}
 	</div>
