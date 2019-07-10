@@ -29,6 +29,7 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,6 +43,7 @@
 							<li>test: {{ job.employee }}</li>
 							-->
 							<td><a href="{% url 'JobImport:job_update' job.job_id %}">Update<a></td>
+							<td><a href="{% url 'JobImport:task_update' job.job_id %}">Budget Update Test</a></td>
 							<td><a href="{% url 'JobImport:job_delete' job.job_id %}">Delete</a></td>
 							<br>
 							<td><a href="{% url 'JobImport:employee_info' job.job_id %}">View Employees</a></td>
@@ -57,7 +59,6 @@
 	<div class="container-fluid">
 		<a href="{% url 'JobImport:index' %}" class="btn btn-outline-secondary btn-tiny">Back to Main Page</a>
 		<a href="{% url 'JobImport:job_details' 1 %}" class="btn btn-outline-secondary btn-tiny">Create New Job</a>
-		<a href="{% url 'JobImport:task_update' 2 %}" class="btn btn-outline-secondary btn-small">Budget Update Test</a>
 	</div>
 	
 </body>

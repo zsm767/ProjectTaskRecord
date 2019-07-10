@@ -240,6 +240,7 @@ class TaskUpdateView( generic.UpdateView ):
 		if 'form' not in context:
 			context['form'] = self.form_class(initial={'code_id': context['TaskCodes'].code_id})
 			context['form'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
+		print(context)
 		return context
 		
 	
