@@ -31,12 +31,12 @@ class TaskForm( forms.ModelForm ):
 		fields = ["code_id","actual_budget",]
 		exclude = ["code_desc", "phase", "job", "budget", "footage", "actual_footage", "acc_footage", "acc_budget",]
 
-
+	"""
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		self.fields['code_id'].queryset = TaskCodes.objects.all()
 	
-	"""
+	
 	def save(self, *args, **kwargs):
 		tf = super(TaskForm, self).save(commit=False)
 		#more to do here?
