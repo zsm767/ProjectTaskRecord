@@ -226,6 +226,7 @@ class TaskUpdateView( generic.UpdateView ):
 	template_name = 'jobimport/task_update.html'
 	context_object_name = 'task_list'
 	success_url = 'jobview'
+	
 
 	"""
 		TO-DO: change the get_obj and get_context_data code to properly retrieve the correct data
@@ -237,9 +238,9 @@ class TaskUpdateView( generic.UpdateView ):
 	def get_context_data(self, **kwargs):
 		context = super(TaskUpdateView, self).get_context_data(**kwargs)
 		if 'form' not in context:
-			context['form'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
 			context['form'] = self.form_class()
-		print('context: %s' % context)
+			context['form'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
+		print('form context: %s' % context['form'].fields)
 		return context
 		
 	

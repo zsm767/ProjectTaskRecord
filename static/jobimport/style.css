@@ -14,7 +14,7 @@ p {
 }
 
 body {
-	padding-left: 1.75em;
+	/*padding-left: 1.75em;*/
 	background-color: #A7C0D6;
 	/*complementary color for this one: #D6BDA7*/
 }
@@ -77,8 +77,14 @@ body {
 }
 
 .bulk {
-	top: 35%;
-	margin: auto;
-	position: absolute;
-	left: 5%
+	top: 0%;
+	margin: 3%;
+	position: relative;
+	left: 3%;
+}
+
+.container-fluid a{
+	border: 1px solid grey;
+	background: #D6BDA7;
+	color: black;
 }
