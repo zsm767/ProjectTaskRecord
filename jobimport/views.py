@@ -227,7 +227,6 @@ class TaskUpdateView( generic.UpdateView ):
 	context_object_name = 'task_list'
 	success_url = 'jobview'
 
-	
 	"""
 		TO-DO: change the get_obj and get_context_data code to properly retrieve the correct data
 	"""
