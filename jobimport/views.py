@@ -238,9 +238,9 @@ class TaskUpdateView( generic.UpdateView ):
 	def get_context_data(self, **kwargs):
 		context = super(TaskUpdateView, self).get_context_data(**kwargs)
 		if 'form' not in context:
-			context['form'] = self.form_class()
+			context['form'] = self.form_class
 			context['form'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
-		print('form context: %s' % context['form'].fields)
+		print('form context: %s' % context['object'])
 		return context
 		
 	

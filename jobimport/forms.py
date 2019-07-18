@@ -36,9 +36,9 @@ class TaskForm( forms.ModelForm ):
 		# NOTE: hardcoding it from here works, for whatever reason. Be sure to check the **kwargs value, and how to get this 
 		#working properly
 		self.fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=2)
-	
-	
 	"""
+	
+	
 	def save(self, *args, **kwargs):
 		tf = super(TaskForm, self).save(commit=False)
 		#more to do here?
