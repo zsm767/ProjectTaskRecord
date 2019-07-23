@@ -29,7 +29,7 @@ class TaskForm( forms.ModelForm ):
 	class Meta:
 		model = TaskCodes
 		fields = ["code_id","actual_budget",]
-		exclude = ["code_desc", "phase", "job", "budget", "footage", "actual_footage", "acc_footage", "acc_budget",]
+		
 
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
