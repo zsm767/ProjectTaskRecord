@@ -243,6 +243,14 @@ class TaskUpdateView( generic.UpdateView ):
 		#print('form context: %s' % context['form'].fields)
 		return context
 		
+		
+	def form_valid(self, form):
+		print( 'printing the form fields: %s\n\n' % form.fields )
+		if 'code_id' in form.fields:
+			print('did we end up in here?')
+			self.object = TaskCodes.objects.get(job__job_id=self.kwargs['job_id'])
+			self.object.save()
+		return HttpResponseRedirect(self.get_success_url())
 	
 	def post(self, request, *args, **kwargs):
 		# getting the user instance
