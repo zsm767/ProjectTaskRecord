@@ -239,8 +239,8 @@ class TaskUpdateView( generic.UpdateView ):
 		context = super(TaskUpdateView, self).get_context_data(**kwargs)
 		if 'form' not in context:
 			context['form'] = self.form_class
-			context['form'].fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
-		#print('form context: %s' % context['form'].fields)
+			context['form'].fields['code_id'] = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
+		#print('\n form context: %s\n' % context['form'].fields)
 		return context
 		
 		
@@ -264,7 +264,7 @@ class TaskUpdateView( generic.UpdateView ):
 		
 		if 'form' in request.POST:
 			form_name = 'form'
-			form = self.get_form()
+			form = self.form_class(initial=request.POST)
 			
 		print( '\n POST data: %s \n' % request.POST )
 		if form.is_valid():
@@ -272,7 +272,6 @@ class TaskUpdateView( generic.UpdateView ):
 			return self.form_valid(form)
 		else:
 			print('we are not valid')
-			print(self.form_invalid(**{form_name: form})
 			return self.form_invalid(**{form_name: form})
 
 
