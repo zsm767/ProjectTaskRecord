@@ -238,7 +238,7 @@ class TaskUpdateView( generic.UpdateView ):
 	def get_context_data(self, **kwargs):
 		context = super(TaskUpdateView, self).get_context_data(**kwargs)
 		if 'form' not in context:
-			context['form'] = self.form_class
+			context['form'] = self.form_class(instance=taskform, data=request.POST or None)
 			context['form'].fields['code_id'] = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
 		#print('\n form context: %s\n' % context['form'].fields)
 		return context
@@ -254,7 +254,7 @@ class TaskUpdateView( generic.UpdateView ):
 		
 		
 	def form_invalid(self, **kwargs):
-		print( self.get_context_data(**kwargs) )
+		#print( '\n ended up in form_invalid: %s \n' % self.get_context_data(**kwargs) )
 		return self.render_to_response(self.get_context_data(**kwargs))
 	
 	
@@ -267,11 +267,19 @@ class TaskUpdateView( generic.UpdateView ):
 			form = self.form_class(initial=request.POST)
 			
 		print( '\n POST data: %s \n' % request.POST )
+		""" for testing the is_valid, it's worth checking the following: 
+			-form.errors and form.non_field_errors to the form and/or view 
+			-examine each field via the below line 
+			-check if DEBUG = True to chec kfor server errors
+			-check server log
+			-when in doubt, step through the is_valid call
+		"""
+		print( form['actual_budget'].value() ) 
 		if form.is_valid():
-			print('we are valid')
 			return self.form_valid(form)
 		else:
 			print('we are not valid')
+			print('form errors: %s' % form.errors)
 			return self.form_invalid(**{form_name: form})
 
 

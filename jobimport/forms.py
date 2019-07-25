@@ -22,8 +22,8 @@ class JobForm( forms.ModelForm ):
 	
 class TaskForm( forms.ModelForm ):
 	code_id = forms.ModelChoiceField( label='Task Code Description', empty_label="Select a Task", queryset=TaskCodes.objects.all(), to_field_name="code_id" )
-	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now(), required=False)
 	actual_budget = forms.DecimalField( label='Actual Budget', min_value=00.00, max_digits=19, decimal_places=2 )
+	week_of = forms.DateField( label='Week of', widget=forms.SelectDateWidget(), initial=timezone.now(), required=False)
 	
 	
 	class Meta:
