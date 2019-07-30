@@ -238,7 +238,7 @@ class TaskUpdateView( generic.UpdateView ):
 	def get_context_data(self, **kwargs):
 		context = super(TaskUpdateView, self).get_context_data(**kwargs)
 		if 'form' not in context:
-			context['form'] = self.form_class(instance=taskform, data=request.POST or None)
+			context['form'] = self.form_class(instance=taskform, data=request.POST)
 			context['form'].fields['code_id'] = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
 		#print('\n form context: %s\n' % context['form'].fields)
 		return context
@@ -270,7 +270,7 @@ class TaskUpdateView( generic.UpdateView ):
 		""" for testing the is_valid, it's worth checking the following: 
 			-form.errors and form.non_field_errors to the form and/or view 
 			-examine each field via the below line 
-			-check if DEBUG = True to chec kfor server errors
+			-check if DEBUG = True to check for server errors
 			-check server log
 			-when in doubt, step through the is_valid call
 		"""
