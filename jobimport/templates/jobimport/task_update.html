@@ -15,7 +15,7 @@
 		{% endif %}
 		
 		{% if task_list %}
-			<form enctype="multipart/form-data" method="POST" action="">
+			<form enctype="multipart/form-data" method="POST" action=""> <!-- not working atm: {% url 'JobImport:task_update' 2 %} -->
 				{% csrf_token %}
 				{{ form.as_p }}
 				<br><br>
