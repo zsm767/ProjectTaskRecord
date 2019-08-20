@@ -220,7 +220,7 @@ class TaskInfoView( generic.ListView ):
 		return TaskCodes.objects.all().filter(job__job_id=self.kwargs['pk'])
 
 
-class TaskUpdateView( generic.UpdateView ):
+class TaskUpdateView( generic.FormView ):
 	model = TaskCodes
 	form_class = TaskForm
 	template_name = 'jobimport/task_update.html'
@@ -231,16 +231,12 @@ class TaskUpdateView( generic.UpdateView ):
 	"""
 		TO-DO: change the get_obj and get_context_data code to properly retrieve the correct data
 	"""
-	def get_object(self, queryset=None):
-		return self.model.objects.get(job__job_id=self.kwargs['pk'])
-
 	
 	def get_context_data(self, **kwargs):
 		context = super(TaskUpdateView, self).get_context_data(**kwargs)
 		if 'form' not in context:
-			context['form'] = self.form_class(data=request.POST, initial=data)
 			context['form'].fields['code_id'] = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
-		#print('\n form context: %s\n' % context['form'].fields)
+		print('\n form context: %s\n' % context['form'].fields)
 		return context
 		
 		
@@ -251,36 +247,8 @@ class TaskUpdateView( generic.UpdateView ):
 			self.object = TaskCodes.objects.get(job__job_id=self.kwargs['job_id'])
 			self.object.save()
 		return HttpResponseRedirect(self.get_success_url())
-		
-		
-	def form_invalid(self, **kwargs):
-		#print( '\n ended up in form_invalid: %s \n' % self.get_context_data(**kwargs) )
-		return self.render_to_response(self.get_context_data(**kwargs))
+
 	
-	
-	def post(self, request, *args, **kwargs):
-		# getting the user instance
-		self.object = self.get_object(request)
-		
-		if 'form' in request.POST:
-			form_name = 'form'
-			form = self.form_class(initial=request.POST)
-			
-		print( '\n POST data: %s \n' % request.POST )
-		""" for testing the is_valid, it's worth checking the following: 
-			-form.errors and form.non_field_errors to the form and/or view 
-			-examine each field via the below line 
-			-check if DEBUG = True to check for server errors
-			-check server log
-			-when in doubt, step through the is_valid call
-		"""
-		print( form['actual_budget'].value() ) 
-		if form.is_valid():
-			return self.form_valid(form)
-		else:
-			print('we are not valid')
-			print('form errors: %s' % form.errors)
-			return self.form_invalid(**{form_name: form})
 
 
 class SuccessView( generic.ListView ):
