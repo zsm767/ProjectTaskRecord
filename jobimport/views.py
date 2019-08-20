@@ -233,18 +233,15 @@ class TaskUpdateView( generic.FormView ):
 	"""
 	
 	def get_context_data(self, **kwargs):
-		context = super(TaskUpdateView, self).get_context_data(**kwargs)
-		if 'form' not in context:
-			context['form'].fields['code_id'] = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
-		print('\n form context: %s\n' % context['form'].fields)
-		return context
+		if 'form' in kwargs:
+			kwargs['form'].fields['code_id'] = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
+		return super(TaskUpdateView, self).get_context_data(**kwargs)
 		
 		
 	def form_valid(self, form):
 		print( 'printing the form fields: %s\n\n' % form.fields )
-		if 'code_id' in form.fields:
+		if 'code_id' in form.cleaned_data:
 			print('did we end up in here?')
-			self.object = TaskCodes.objects.get(job__job_id=self.kwargs['job_id'])
 			self.object.save()
 		return HttpResponseRedirect(self.get_success_url())
 
