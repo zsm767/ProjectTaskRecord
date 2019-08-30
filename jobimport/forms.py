@@ -30,13 +30,13 @@ class TaskForm( forms.ModelForm ):
 		model = TaskCodes
 		fields = ["code_id","actual_budget",]
 		
-
+	"""
 	def __init__(self, *args, **kwargs):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		# NOTE: hardcoding it from here works, for whatever reason. Be sure to check the **kwargs value, and how to get this 
 		#working properly
 		self.fields['code_id'].queryset = TaskCodes.objects.filter(job__job_id=2)
-	"""
+	
 	
 	
 	def save(self, *args, **kwargs):

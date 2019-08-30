@@ -237,6 +237,7 @@ class TaskUpdateView( generic.FormView ):
 		context['form'] = TaskForm()
 		if 'form' in kwargs:
 			context['form'].fields['code_id'] = TaskCodes.objects.filter(job__job_id=self.kwargs['pk'])
+		print(context)
 		return context
 		
 		
