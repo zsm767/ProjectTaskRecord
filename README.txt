@@ -1,3 +1,8 @@
+2020-01-24
+Project finished in October. This repositiory is out dated, but contains a bulk of the project. Removed some of the excel files used for import/export, since they're not relevant with the DB file not included.
+
+Happy reading!
+------------------------------------------------------------------------------------------------
 2019-06-19
 Update (a little late):
 +Functionality of the accumulator is working as intended now--still some work to be done to hook it up from each task to a weekly accumulation, but one thing at a time.
